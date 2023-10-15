@@ -17,4 +17,4 @@ using TestDBContext ctx = new TestDBContext();
 //ctx.SaveChanges();
 
 ctx.Region.Where(简化值对象的比较帮助类.MakeEqual((Region c) => c.Name,
-    new MultilingualString("北京", "BeiJing")));
+new MultilingualString("北京", "BeiJing"))).ToList();
