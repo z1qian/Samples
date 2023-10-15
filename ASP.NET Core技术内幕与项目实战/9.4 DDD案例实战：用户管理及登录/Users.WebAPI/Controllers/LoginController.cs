@@ -8,6 +8,11 @@ namespace Users.WebAPI.Controllers;
 [Route("api/[controller]/[action]")]
 [ApiController]
 [UnitOfWork(typeof(UserDbContext))]
+/*
+ * 可以看到，应用服务层主要进行的是数据的校验、请求数据的获取、领域服务返回值的显示等处理，
+ * 并没有复杂的业务逻辑，因为主要的业务逻辑都被封装在领域层。应用服务层是非常“薄”的一层，
+ * 应用服务层主要进行安全认证、权限校验、数据校验、事务控制、工作单元控制、领域服务的调用等
+ */
 public class LoginController : ControllerBase
 {
     private readonly UserDomainService domainService;

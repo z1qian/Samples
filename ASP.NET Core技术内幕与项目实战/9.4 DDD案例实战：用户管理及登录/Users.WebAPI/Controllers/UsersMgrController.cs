@@ -5,66 +5,65 @@ using Users.Domain.Entities;
 using Users.Infrastructure;
 using Users.WebAPI.RequestParameters;
 
-namespace Users.WebAPI.Controllers
+namespace Users.WebAPI.Controllers;
+
+[Route("api/[controller]/[action]")]
+[ApiController]
+[UnitOfWork(typeof(UserDbContext))]
+public class UsersMgrController : ControllerBase
 {
-    [Route("api/[controller]/[action]")]
-    [ApiController]
-    [UnitOfWork(typeof(UserDbContext))]
-    public class UsersMgrController : ControllerBase
+    private readonly UserDbContext dbCtx;
+    private readonly UserDomainService domainService;
+    private readonly IUserDomainRepository repository;
+
+    public UsersMgrController(UserDbContext dbCtx, UserDomainService domainService, IUserDomainRepository repository)
     {
-        private readonly UserDbContext dbCtx;
-        private readonly UserDomainService domainService;
-        private readonly IUserDomainRepository repository;
+        this.dbCtx = dbCtx;
+        this.domainService = domainService;
+        this.repository = repository;
+    }
 
-        public UsersMgrController(UserDbContext dbCtx, UserDomainService domainService, IUserDomainRepository repository)
+    [HttpPost]
+    public async Task<IActionResult> AddNew(PhoneNumber req)
+    {
+        if ((await repository.FindOneAsync(req)) != null)
         {
-            this.dbCtx = dbCtx;
-            this.domainService = domainService;
-            this.repository = repository;
+            return BadRequest("手机号已经存在");
         }
+        User user = new User(req);
+        dbCtx.Users.Add(user);
+        return Ok("成功");
+    }
 
-        [HttpPost]
-        public async Task<IActionResult> AddNew(PhoneNumber req)
+    [HttpPut]
+    public async Task<IActionResult> ChangePassword(ChangePasswordRequest req)
+    {
+        var user = await repository.FindOneAsync(req.Id);
+        if (user == null)
         {
-            if ((await repository.FindOneAsync(req)) != null)
-            {
-                return BadRequest("手机号已经存在");
-            }
-            User user = new User(req);
-            dbCtx.Users.Add(user);
-            return Ok("成功");
+            return NotFound();
         }
+        user.ChangePassword(req.Password);
+        return Ok("成功");
+    }
 
-        [HttpPut]
-        public async Task<IActionResult> ChangePassword(ChangePasswordRequest req)
+    [HttpPut]
+    [Route("{id}")]
+    public async Task<IActionResult> Unlock(Guid id)
+    {
+        var user = await repository.FindOneAsync(id);
+        if (user == null)
         {
-            var user = await repository.FindOneAsync(req.Id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            user.ChangePassword(req.Password);
-            return Ok("成功");
+            return NotFound();
         }
+        domainService.ResetAccessFail(user);
+        return Ok("成功");
+    }
 
-        [HttpPut]
-        [Route("{id}")]
-        public async Task<IActionResult> Unlock(Guid id)
-        {
-            var user = await repository.FindOneAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            domainService.ResetAccessFail(user);
-            return Ok("成功");
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var users = await dbCtx.Users.ToListAsync();
-            return Ok(users);
-        }
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var users = await dbCtx.Users.ToListAsync();
+        return Ok(users);
     }
 }
