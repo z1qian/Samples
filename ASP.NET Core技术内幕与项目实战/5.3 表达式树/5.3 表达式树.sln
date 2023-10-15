@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33801.468
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "表达式树", "表达式树\表达式树.csproj", "{D4DD1E07-CC48-44E3-A7F1-C43CDBB11DBC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreLib", "EFCoreLib\EFCoreLib.csproj", "{AFC273A0-7D20-425C-A0F0-F6BCA2B9368E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "通过代码动态构建表达式树", "通过代码动态构建表达式树\通过代码动态构建表达式树.csproj", "{EB4A7FC9-7AED-4D3B-8B25-80D875E3EB60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "让构建动态起来", "让构建动态起来\让构建动态起来.csproj", "{9EE3C39B-8A1B-4993-92BA-E157CE1492F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "实现Select的动态化", "实现Select的动态化\实现Select的动态化.csproj", "{2195BF1A-8F09-43CA-9F38-011838D96A1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "避免动态构建表达式树", "避免动态构建表达式树\避免动态构建表达式树.csproj", "{CF5DC0E3-C568-4E41-9C02-7B995C61272B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4DD1E07-CC48-44E3-A7F1-C43CDBB11DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4DD1E07-CC48-44E3-A7F1-C43CDBB11DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4DD1E07-CC48-44E3-A7F1-C43CDBB11DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4DD1E07-CC48-44E3-A7F1-C43CDBB11DBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFC273A0-7D20-425C-A0F0-F6BCA2B9368E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFC273A0-7D20-425C-A0F0-F6BCA2B9368E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFC273A0-7D20-425C-A0F0-F6BCA2B9368E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFC273A0-7D20-425C-A0F0-F6BCA2B9368E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB4A7FC9-7AED-4D3B-8B25-80D875E3EB60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB4A7FC9-7AED-4D3B-8B25-80D875E3EB60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB4A7FC9-7AED-4D3B-8B25-80D875E3EB60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB4A7FC9-7AED-4D3B-8B25-80D875E3EB60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EE3C39B-8A1B-4993-92BA-E157CE1492F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EE3C39B-8A1B-4993-92BA-E157CE1492F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EE3C39B-8A1B-4993-92BA-E157CE1492F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EE3C39B-8A1B-4993-92BA-E157CE1492F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2195BF1A-8F09-43CA-9F38-011838D96A1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2195BF1A-8F09-43CA-9F38-011838D96A1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2195BF1A-8F09-43CA-9F38-011838D96A1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2195BF1A-8F09-43CA-9F38-011838D96A1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF5DC0E3-C568-4E41-9C02-7B995C61272B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF5DC0E3-C568-4E41-9C02-7B995C61272B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF5DC0E3-C568-4E41-9C02-7B995C61272B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF5DC0E3-C568-4E41-9C02-7B995C61272B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0BECD139-A12A-41D0-AFEB-441FE3630231}
+	EndGlobalSection
+EndGlobal

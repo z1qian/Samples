@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "发送邮件": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "Password": "envi`123",
+        "SmtpServer": "envir.mail.com",
+        "UserName": "envi"
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33801.468
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "标识框架的使用", "标识框架的使用\标识框架的使用.csproj", "{EEACC0B7-4137-4F9D-8BAD-776D47AAD425}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JWT", "JWT", "{5486F7C4-ED58-401E-9F22-AE185BEFCB9E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "生成JWT", "生成JWT\生成JWT.csproj", "{3E2A8B9D-E5D8-4B42-8BC1-69CB495890BD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET Core中使用JWT", "ASP.NET Core中使用JWT\ASP.NET Core中使用JWT.csproj", "{0F80C067-6179-4D25-97BE-918F10BA5B88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "解决JWT无法提前撤回的难题", "解决JWT无法提前撤回的难题\解决JWT无法提前撤回的难题.csproj", "{23154C5B-57F4-4D9F-8BCB-0BE077160369}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEACC0B7-4137-4F9D-8BAD-776D47AAD425}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEACC0B7-4137-4F9D-8BAD-776D47AAD425}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEACC0B7-4137-4F9D-8BAD-776D47AAD425}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEACC0B7-4137-4F9D-8BAD-776D47AAD425}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E2A8B9D-E5D8-4B42-8BC1-69CB495890BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E2A8B9D-E5D8-4B42-8BC1-69CB495890BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E2A8B9D-E5D8-4B42-8BC1-69CB495890BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E2A8B9D-E5D8-4B42-8BC1-69CB495890BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F80C067-6179-4D25-97BE-918F10BA5B88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F80C067-6179-4D25-97BE-918F10BA5B88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F80C067-6179-4D25-97BE-918F10BA5B88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F80C067-6179-4D25-97BE-918F10BA5B88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23154C5B-57F4-4D9F-8BCB-0BE077160369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23154C5B-57F4-4D9F-8BCB-0BE077160369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23154C5B-57F4-4D9F-8BCB-0BE077160369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23154C5B-57F4-4D9F-8BCB-0BE077160369}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3E2A8B9D-E5D8-4B42-8BC1-69CB495890BD} = {5486F7C4-ED58-401E-9F22-AE185BEFCB9E}
+		{0F80C067-6179-4D25-97BE-918F10BA5B88} = {5486F7C4-ED58-401E-9F22-AE185BEFCB9E}
+		{23154C5B-57F4-4D9F-8BCB-0BE077160369} = {5486F7C4-ED58-401E-9F22-AE185BEFCB9E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF7D7020-5B6C-4A51-87B8-0003465E1AA0}
+	EndGlobalSection
+EndGlobal

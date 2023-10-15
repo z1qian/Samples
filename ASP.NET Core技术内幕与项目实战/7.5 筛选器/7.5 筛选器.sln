@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33801.468
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "自定义的异常筛选器", "自定义的异常筛选器\自定义的异常筛选器.csproj", "{0C2EB884-968A-44F7-8B66-78DBF0468AF4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "操作筛选器", "操作筛选器\操作筛选器.csproj", "{45B8154F-49D0-4288-A2AE-6D25E095B0C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "案例", "案例", "{3EBC35CF-783D-42D9-B81A-C8F55BD82462}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "自动启用事务的操作筛选器", "自动启用事务的操作筛选器\自动启用事务的操作筛选器.csproj", "{A33DED48-7336-4B62-93C3-1A2AA192735D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreLib", "EFCoreLib\EFCoreLib.csproj", "{8D484CCB-A280-4CE6-BEC6-3D24796376BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "开发请求限流器", "开发请求限流器\开发请求限流器.csproj", "{28BC85DD-1175-4A3C-8221-D8411BD9B854}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C2EB884-968A-44F7-8B66-78DBF0468AF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C2EB884-968A-44F7-8B66-78DBF0468AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C2EB884-968A-44F7-8B66-78DBF0468AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C2EB884-968A-44F7-8B66-78DBF0468AF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45B8154F-49D0-4288-A2AE-6D25E095B0C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B8154F-49D0-4288-A2AE-6D25E095B0C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B8154F-49D0-4288-A2AE-6D25E095B0C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B8154F-49D0-4288-A2AE-6D25E095B0C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A33DED48-7336-4B62-93C3-1A2AA192735D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A33DED48-7336-4B62-93C3-1A2AA192735D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A33DED48-7336-4B62-93C3-1A2AA192735D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A33DED48-7336-4B62-93C3-1A2AA192735D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D484CCB-A280-4CE6-BEC6-3D24796376BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D484CCB-A280-4CE6-BEC6-3D24796376BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D484CCB-A280-4CE6-BEC6-3D24796376BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D484CCB-A280-4CE6-BEC6-3D24796376BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28BC85DD-1175-4A3C-8221-D8411BD9B854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28BC85DD-1175-4A3C-8221-D8411BD9B854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28BC85DD-1175-4A3C-8221-D8411BD9B854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28BC85DD-1175-4A3C-8221-D8411BD9B854}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A33DED48-7336-4B62-93C3-1A2AA192735D} = {3EBC35CF-783D-42D9-B81A-C8F55BD82462}
+		{8D484CCB-A280-4CE6-BEC6-3D24796376BC} = {3EBC35CF-783D-42D9-B81A-C8F55BD82462}
+		{28BC85DD-1175-4A3C-8221-D8411BD9B854} = {3EBC35CF-783D-42D9-B81A-C8F55BD82462}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {887FDEA7-A1C4-410A-8861-724454D77EE4}
+	EndGlobalSection
+EndGlobal

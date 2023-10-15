@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "BooksEFCore": {
+      "commandName": "Project",
+      "environmentVariables": {
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33801.468
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "既生IEnumerable何生IQueryable", "既生IEnumerable何生IQueryable\既生IEnumerable何生IQueryable.csproj", "{0ACCAE2E-D19D-4A00-B3A2-2649B299C57E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib", "Lib\Lib.csproj", "{1055A00C-AF0A-4FB0-8AE2-B0FE03F4D58A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF Core分页查询", "EF Core分页查询\EF Core分页查询.csproj", "{EB71B310-DF3E-47B8-B2EE-432B9110E220}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IQueryable的底层运行", "IQueryable的底层运行\IQueryable的底层运行.csproj", "{2B5BCCA8-C957-4ED1-9D88-99FFC175EE46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "执行原生SQL语句", "执行原生SQL语句\执行原生SQL语句.csproj", "{59352A9D-A5A3-4034-80E1-721DCA48282E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "实体类的状态变化", "实体类的状态变化\实体类的状态变化.csproj", "{EE2569C0-789F-4F5D-9D52-9329CDBD831C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0ACCAE2E-D19D-4A00-B3A2-2649B299C57E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ACCAE2E-D19D-4A00-B3A2-2649B299C57E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ACCAE2E-D19D-4A00-B3A2-2649B299C57E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ACCAE2E-D19D-4A00-B3A2-2649B299C57E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1055A00C-AF0A-4FB0-8AE2-B0FE03F4D58A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1055A00C-AF0A-4FB0-8AE2-B0FE03F4D58A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1055A00C-AF0A-4FB0-8AE2-B0FE03F4D58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1055A00C-AF0A-4FB0-8AE2-B0FE03F4D58A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB71B310-DF3E-47B8-B2EE-432B9110E220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB71B310-DF3E-47B8-B2EE-432B9110E220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB71B310-DF3E-47B8-B2EE-432B9110E220}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB71B310-DF3E-47B8-B2EE-432B9110E220}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B5BCCA8-C957-4ED1-9D88-99FFC175EE46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B5BCCA8-C957-4ED1-9D88-99FFC175EE46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B5BCCA8-C957-4ED1-9D88-99FFC175EE46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B5BCCA8-C957-4ED1-9D88-99FFC175EE46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59352A9D-A5A3-4034-80E1-721DCA48282E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59352A9D-A5A3-4034-80E1-721DCA48282E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59352A9D-A5A3-4034-80E1-721DCA48282E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59352A9D-A5A3-4034-80E1-721DCA48282E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE2569C0-789F-4F5D-9D52-9329CDBD831C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE2569C0-789F-4F5D-9D52-9329CDBD831C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE2569C0-789F-4F5D-9D52-9329CDBD831C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE2569C0-789F-4F5D-9D52-9329CDBD831C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {514C7857-809D-4083-8ED4-C645613351A7}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>_7._2_配置系统与ASP.NET_Core的集成</RootNamespace>
+    <UserSecretsId>f65ce3f4-e432-4878-a7e7-ad13588c2beb</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+    <PackageReference Include="StackExchange.Redis" Version="2.6.116" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Zack.AnyDBConfigProvider" Version="1.1.4" />
+  </ItemGroup>
+
+</Project>

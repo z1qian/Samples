@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "多配置源读取配置": {
+      "commandName": "Project",
+      "commandLineArgs": "name=zzz /proxy:address=aaa proxy:port=80 proxy:ids:1=3 proxy:ids:0=5",
+      "environmentVariables": {
+        "CI_proxy:ids:0": "5",
+        "CI_proxy:port": "80",
+        "CI_proxy:ids:1": "3",
+        "CI_proxy:address": "aaa"
+      }
+    }
+  }
+}
