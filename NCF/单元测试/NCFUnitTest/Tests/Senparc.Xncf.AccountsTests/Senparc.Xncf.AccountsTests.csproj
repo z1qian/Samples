@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NCFUnitTest\Senparc.Xncf.Accounts\Senparc.Xncf.Accounts.csproj" />
+    <ProjectReference Include="..\..\Senparc.Xncf.Accounts\Senparc.Xncf.Accounts.csproj" />
   </ItemGroup>
 
 </Project>
