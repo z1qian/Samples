@@ -6,7 +6,7 @@ public class AccountOperationLog
 {
     private AccountOperationLog() { }
 
-    public AccountOperationLog(string note, string @operator, DateTime operateTime)
+    public AccountOperationLog(string note, string @operator, DateTime operateTime) : this()
     {
         Note = note;
         Operator = @operator;
@@ -16,4 +16,9 @@ public class AccountOperationLog
     public string Note { get; private set; }
     public string Operator { get; private set; }
     public DateTime OperateTime { get; private set; }
+
+    public void ReBuildOperationType(AccountOperationType typeKind)
+    {
+        Note = $"[{typeKind.ToString()}]{Note}";
+    }
 }
