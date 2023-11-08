@@ -1,4 +1,4 @@
-﻿using Senparc.Xncf.Accounts;
+﻿using Senparc.Xncf.Accounts.Domain.Models;
 
 namespace Senparc.Xncf.AccountsTests.Domain.Models;
 

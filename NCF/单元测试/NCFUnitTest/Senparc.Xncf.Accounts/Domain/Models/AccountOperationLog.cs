@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Senparc.Ncf.Core.Models;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Senparc.Xncf.Accounts;
+namespace Senparc.Xncf.Accounts.Domain.Models;
 
-public class AccountOperationLog
+[Serializable]
+[Table("AccountOperationLogs")]
+public class AccountOperationLog : EntityBase<int>
 {
     private AccountOperationLog() { }
 
@@ -19,6 +23,6 @@ public class AccountOperationLog
 
     public void ReBuildOperationType(AccountOperationType typeKind)
     {
-        Note = $"[{typeKind.ToString()}]{Note}";
+        Note = $"[{typeKind}]{Note}";
     }
 }

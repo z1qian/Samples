@@ -1,4 +1,4 @@
-﻿namespace Senparc.Xncf.Accounts;
+﻿namespace Senparc.Xncf.Accounts.Domain.Models;
 
 public enum AccountOperationType
 {
