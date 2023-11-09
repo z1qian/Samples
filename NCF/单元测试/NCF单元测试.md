@@ -1,3 +1,5 @@
+* 使用 `MSTest` 测试框架
+
 * 单元测试最好不要访问数据库
 
 * 从内到外测试（`models->service->appservice`）
