@@ -28,7 +28,21 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
     public override IResponseMessageBase DefaultResponseMessage(IRequestMessageBase requestMessage)
     {
         var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
-        responseMessage.Content = $"这条消息来自DefaultResponseMessage。\r\n您收到这条消息，表明该公众号没有对【{requestMessage.MsgType}】类型做处理。";
+        responseMessage.Content = $"当前服务器时间：{DateTime.Now}";
         return responseMessage;
+    }
+
+    public override Task<IResponseMessageBase> OnTextRequestAsync(RequestMessageText requestMessage)
+    {
+        var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+        responseMessage.Content = $"你输入了文字：{requestMessage.Content}";
+        return Task.FromResult(responseMessage as IResponseMessageBase);
+    }
+
+    public override Task<IResponseMessageBase> OnLocationRequestAsync(RequestMessageLocation requestMessage)
+    {
+        var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+        responseMessage.Content = $"你发送了位置信息：{requestMessage.Location_X}，{requestMessage.Location_Y}";
+        return Task.FromResult(responseMessage as IResponseMessageBase);
     }
 }
