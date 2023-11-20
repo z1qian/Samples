@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Senparc.Weixin.AspNet" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SenparcClass.Service\SenparcClass.Service.csproj" />
   </ItemGroup>
 
