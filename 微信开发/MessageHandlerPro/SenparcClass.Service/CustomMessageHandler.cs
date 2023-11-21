@@ -32,11 +32,17 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
         return responseMessage;
     }
 
-    public override Task<IResponseMessageBase> OnTextRequestAsync(RequestMessageText requestMessage)
+    public override async Task<IResponseMessageBase> OnTextRequestAsync(RequestMessageText requestMessage)
     {
         var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
         responseMessage.Content = $"你输入了文字：{requestMessage.Content}";
-        return Task.FromResult(responseMessage as IResponseMessageBase);
+
+        if (requestMessage.Content == "cmd")
+        {
+            var messageContext = await GetCurrentMessageContext();
+            messageContext.StorageData = "true";
+        }
+        return responseMessage;
     }
 
     public override Task<IResponseMessageBase> OnLocationRequestAsync(RequestMessageLocation requestMessage)
@@ -48,8 +54,44 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
 
     public override Task<IResponseMessageBase> OnEvent_ClickRequestAsync(RequestMessageEvent_Click requestMessage)
     {
-        var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
-        responseMessage.Content = $"你点击了按钮：{requestMessage.EventKey}";
-        return Task.FromResult(responseMessage as IResponseMessageBase);
+        if (requestMessage.EventKey == "123")
+        {
+            var responseMessage = this.CreateResponseMessage<ResponseMessageNews>();
+
+            var news = new Article()
+            {
+                Title = "你点击了按钮：" + requestMessage.EventKey,
+                Description = "这里是描述，第一行\r\n这里是描述，第二行",
+                PicUrl = "https://ts1.cn.mm.bing.net/th?id=ORMS.3442dae1d526dc591897392fa420b721&pid=Wdp&w=300&h=156&qlt=90&c=1&rs=1&dpr=1.5&p=0",
+                Url = "https://mp.weixin.qq.com/"
+            };
+
+            responseMessage.Articles.Add(news);
+
+            return Task.FromResult(responseMessage as IResponseMessageBase);
+        }
+        else if (requestMessage.EventKey == "456")
+        {
+            ////直接不回应微信的请求
+            //return null;
+
+            //该公众号提供的服务出现故障，请稍后再试
+            var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+            responseMessage.Content = "";
+
+            return Task.FromResult(responseMessage as IResponseMessageBase);
+        }
+        else if (requestMessage.EventKey == "789")
+        {
+            //回应空回复
+            return Task.FromResult((IResponseMessageBase)new ResponseMessageNoResponse());
+        }
+        else
+        {
+            var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+            responseMessage.Content = $"你点击了按钮：{requestMessage.EventKey}";
+
+            return Task.FromResult(responseMessage as IResponseMessageBase);
+        }
     }
 }
