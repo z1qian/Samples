@@ -45,4 +45,11 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
         responseMessage.Content = $"你发送了位置信息：{requestMessage.Location_X}，{requestMessage.Location_Y}";
         return Task.FromResult(responseMessage as IResponseMessageBase);
     }
+
+    public override Task<IResponseMessageBase> OnEvent_ClickRequestAsync(RequestMessageEvent_Click requestMessage)
+    {
+        var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+        responseMessage.Content = $"你点击了按钮：{requestMessage.EventKey}";
+        return Task.FromResult(responseMessage as IResponseMessageBase);
+    }
 }
