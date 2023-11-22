@@ -76,6 +76,13 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
 
                  return responseMessage;
              })
+             .Keyword("zxc", () =>
+             {
+                 var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+                 responseMessage.Content = "是否执行zxc？";
+
+                 return responseMessage;
+             })
              .Default(() =>
              {
                  var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
@@ -163,5 +170,18 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
 
             return responseMessage;
         }
+    }
+
+    public override Task<IResponseMessageBase> OnTextOrEventRequestAsync(RequestMessageText requestMessage)
+    {
+        if (requestMessage.Content == "zxc")
+        {
+            var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+            responseMessage.Content = $"你在OnTextOrEventRequestAsync中触发了关键字{requestMessage.Content}";
+
+            return Task.FromResult(responseMessage as IResponseMessageBase);
+        }
+
+        return base.OnTextOrEventRequestAsync(requestMessage);
     }
 }
