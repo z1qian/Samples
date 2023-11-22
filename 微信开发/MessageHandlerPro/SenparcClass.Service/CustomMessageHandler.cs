@@ -15,6 +15,7 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
 {
     public CustomMessageHandler(Stream inputStream, PostModel postModel, int maxRecordCount = 0, bool onlyAllowEncryptMessage = false, DeveloperInfo developerInfo = null, IServiceProvider serviceProvider = null) : base(inputStream, postModel, maxRecordCount, onlyAllowEncryptMessage, developerInfo, serviceProvider)
     {
+        GetCurrentMessageContext().Result.ExpireMinutes = 2;
     }
 
     public CustomMessageHandler(XDocument requestDocument, PostModel postModel, int maxRecordCount = 0, bool onlyAllowEncryptMessage = false, DeveloperInfo developerInfo = null, IServiceProvider serviceProvider = null) : base(requestDocument, postModel, maxRecordCount, onlyAllowEncryptMessage, developerInfo, serviceProvider)
@@ -37,11 +38,21 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
         var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
         responseMessage.Content = $"你输入了文字：{requestMessage.Content}";
 
+        var messageContext = await GetCurrentMessageContext();
+
         if (requestMessage.Content == "cmd")
         {
-            var messageContext = await GetCurrentMessageContext();
-            messageContext.StorageData = "true";
+            messageContext.StorageData = new StorageModel() { IsInCmd = true };
         }
+        else if (requestMessage.Content == "exit")
+        {
+            var storageData = messageContext.StorageData as StorageModel;
+            if (storageData != null)
+            {
+                storageData.IsInCmd = false;
+            }
+        }
+
         return responseMessage;
     }
 
@@ -52,7 +63,7 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
         return Task.FromResult(responseMessage as IResponseMessageBase);
     }
 
-    public override Task<IResponseMessageBase> OnEvent_ClickRequestAsync(RequestMessageEvent_Click requestMessage)
+    public override async Task<IResponseMessageBase> OnEvent_ClickRequestAsync(RequestMessageEvent_Click requestMessage)
     {
         if (requestMessage.EventKey == "123")
         {
@@ -68,7 +79,7 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
 
             responseMessage.Articles.Add(news);
 
-            return Task.FromResult(responseMessage as IResponseMessageBase);
+            return responseMessage;
         }
         else if (requestMessage.EventKey == "456")
         {
@@ -79,19 +90,42 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
             var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
             responseMessage.Content = "";
 
-            return Task.FromResult(responseMessage as IResponseMessageBase);
+            return responseMessage;
         }
         else if (requestMessage.EventKey == "789")
         {
-            //回应空回复
-            return Task.FromResult((IResponseMessageBase)new ResponseMessageNoResponse());
+            ////回应空回复
+            //return Task.FromResult((IResponseMessageBase)new ResponseMessageNoResponse());
+
+            var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+
+            var messageContext = await GetCurrentMessageContext();
+            var storageData = messageContext.StorageData as StorageModel;
+            if (storageData != null)
+            {
+                if (storageData.IsInCmd)
+                {
+                    responseMessage.Content = "已进入cmd状态";
+                    responseMessage.Content += "\r\n上一条消息的类型：" + messageContext.RequestMessages.Last().MsgType;
+                }
+                else
+                {
+                    responseMessage.Content = "已退出cmd状态";
+                }
+            }
+            else
+            {
+                responseMessage.Content = "未找到Session信息";
+            }
+
+            return responseMessage;
         }
         else
         {
             var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
             responseMessage.Content = $"你点击了按钮：{requestMessage.EventKey}";
 
-            return Task.FromResult(responseMessage as IResponseMessageBase);
+            return responseMessage;
         }
     }
 }
