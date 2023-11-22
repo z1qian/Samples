@@ -1,5 +1,6 @@
 ﻿using Senparc.NeuChar.App.AppStore;
 using Senparc.NeuChar.Entities;
+using Senparc.NeuChar.Entities.Request;
 using Senparc.Weixin.MP.Entities;
 using Senparc.Weixin.MP.Entities.Request;
 using Senparc.Weixin.MP.MessageHandlers;
@@ -15,7 +16,6 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
 {
     public CustomMessageHandler(Stream inputStream, PostModel postModel, int maxRecordCount = 0, bool onlyAllowEncryptMessage = false, DeveloperInfo developerInfo = null, IServiceProvider serviceProvider = null) : base(inputStream, postModel, maxRecordCount, onlyAllowEncryptMessage, developerInfo, serviceProvider)
     {
-        GetCurrentMessageContext().Result.ExpireMinutes = 2;
     }
 
     public CustomMessageHandler(XDocument requestDocument, PostModel postModel, int maxRecordCount = 0, bool onlyAllowEncryptMessage = false, DeveloperInfo developerInfo = null, IServiceProvider serviceProvider = null) : base(requestDocument, postModel, maxRecordCount, onlyAllowEncryptMessage, developerInfo, serviceProvider)
@@ -35,22 +35,58 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
 
     public override async Task<IResponseMessageBase> OnTextRequestAsync(RequestMessageText requestMessage)
     {
-        var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
-        responseMessage.Content = $"你输入了文字：{requestMessage.Content}";
-
         var messageContext = await GetCurrentMessageContext();
 
-        if (requestMessage.Content == "cmd")
+        var handler = requestMessage.StartHandler(false)
+             .Keyword("cmd", () =>
+             {
+                 messageContext.StorageData = new StorageModel() { IsInCmd = true };
+
+                 var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+                 responseMessage.Content = $"cmd ok";
+
+                 return responseMessage;
+             })
+             .Keywords(new string[] { "exit", "quit", "close", "退出", "leave" }, () =>
+             {
+                 var storageData = messageContext.StorageData as StorageModel;
+                 if (storageData != null)
+                 {
+                     storageData.IsInCmd = false;
+                 }
+
+                 var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+                 responseMessage.Content = $"cmd {requestMessage.Content}";
+
+                 return responseMessage;
+             })
+             .Regex("http", () =>
+             {
+                 var responseMessage = this.CreateResponseMessage<ResponseMessageNews>();
+
+                 var news = new Article()
+                 {
+                     Title = "你输入了网址：" + requestMessage.Content,
+                     Description = "这里是描述，第一行\r\n这里是描述，第二行",
+                     PicUrl = "https://ts1.cn.mm.bing.net/th?id=ORMS.3442dae1d526dc591897392fa420b721&pid=Wdp&w=300&h=156&qlt=90&c=1&rs=1&dpr=1.5&p=0",
+                     Url = requestMessage.Content
+                 };
+
+                 responseMessage.Articles.Add(news);
+
+                 return responseMessage;
+             })
+             .Default(() =>
+             {
+                 var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+                 responseMessage.Content = "这是一条默认的文本请求回复消息";
+                 return responseMessage;
+             });
+
+        var responseMessage = handler.ResponseMessage;
+        if (responseMessage is ResponseMessageText textMessage)
         {
-            messageContext.StorageData = new StorageModel() { IsInCmd = true };
-        }
-        else if (requestMessage.Content == "exit")
-        {
-            var storageData = messageContext.StorageData as StorageModel;
-            if (storageData != null)
-            {
-                storageData.IsInCmd = false;
-            }
+            textMessage.Content += $"\r\n你发送了文字信息：【{requestMessage.Content}】";
         }
 
         return responseMessage;
