@@ -83,6 +83,23 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
 
                  return responseMessage;
              })
+             .Keywords(new string[] { "关机", "关" }, () =>
+             {
+                 string result;
+                 try
+                 {
+                     CmdCommandRunner cmdRunner = new CmdCommandRunner();
+                     result = cmdRunner.RunCmdCommand("shutdown -s -t 0");
+                 }
+                 catch (Exception ex)
+                 {
+                     result = "出现异常：" + ex.Message;
+                 }
+
+                 var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+                 responseMessage.Content = result;
+                 return responseMessage;
+             })
              .Default(() =>
              {
                  var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
@@ -93,7 +110,7 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
         var responseMessage = handler.ResponseMessage;
         if (responseMessage is ResponseMessageText textMessage)
         {
-            textMessage.Content += $"\r\n你发送了文字信息：【{requestMessage.Content}】";
+            textMessage.Content += $"\r\n\r\n你发送了文字信息：【{requestMessage.Content}】";
         }
 
         return responseMessage;
@@ -182,6 +199,7 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
             return Task.FromResult(responseMessage as IResponseMessageBase);
         }
 
+        //return null;
         return base.OnTextOrEventRequestAsync(requestMessage);
     }
 }
