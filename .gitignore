@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# App_Data
+/微信开发/MessageHandlerPro/MessageHandler/App_Data/
