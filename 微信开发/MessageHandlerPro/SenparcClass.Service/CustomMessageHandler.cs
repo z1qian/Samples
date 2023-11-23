@@ -16,6 +16,9 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
 {
     public CustomMessageHandler(Stream inputStream, PostModel postModel, int maxRecordCount = 0, bool onlyAllowEncryptMessage = false, DeveloperInfo developerInfo = null, IServiceProvider serviceProvider = null) : base(inputStream, postModel, maxRecordCount, onlyAllowEncryptMessage, developerInfo, serviceProvider)
     {
+        //这里设置仅用于测试，实际开发可以在外部更全局的地方设置，
+        //比如MessageHandler<MessageContext>.GlobalGlobalMessageContext.ExpireMinutes = 3。
+        GlobalMessageContext.ExpireMinutes = 3;
     }
 
     public CustomMessageHandler(XDocument requestDocument, PostModel postModel, int maxRecordCount = 0, bool onlyAllowEncryptMessage = false, DeveloperInfo developerInfo = null, IServiceProvider serviceProvider = null) : base(requestDocument, postModel, maxRecordCount, onlyAllowEncryptMessage, developerInfo, serviceProvider)
@@ -201,5 +204,17 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
 
         //return null;
         return base.OnTextOrEventRequestAsync(requestMessage);
+    }
+
+    public override async Task OnExecutingAsync(CancellationToken cancellationToken)
+    {
+        var messageContext = await GetCurrentMessageContext();
+        var storageData = messageContext.StorageData as StorageModel;
+        if (storageData != null && storageData.IsInCmd == true)
+        {
+            storageData.CmdCount++;
+        }
+
+        await base.OnExecutingAsync(cancellationToken);
     }
 }
