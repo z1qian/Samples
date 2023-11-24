@@ -183,6 +183,23 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
 
             return responseMessage;
         }
+        else if (requestMessage.EventKey == "getCount")
+        {
+            var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+
+            var messageContext = await GetCurrentMessageContext();
+            var storageData = messageContext.StorageData as StorageModel;
+            if (storageData != null)
+            {
+                responseMessage.Content = "CmdCount：" + storageData.CmdCount;
+            }
+            else
+            {
+                responseMessage.Content = "未找到Session信息";
+            }
+
+            return responseMessage;
+        }
         else
         {
             var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
@@ -213,8 +230,30 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
         if (storageData != null && storageData.IsInCmd == true)
         {
             storageData.CmdCount++;
+
+            if (storageData.CmdCount >= 5)
+            {
+                var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+                responseMessage.Content = "CmdCount已经 >= 5";
+
+                ResponseMessage = responseMessage;
+                CancelExecute = true;
+            }
         }
 
         await base.OnExecutingAsync(cancellationToken);
+    }
+
+    public override Task OnExecutedAsync(CancellationToken cancellationToken)
+    {
+        if (ResponseMessage is ResponseMessageText textMessage)
+        {
+            textMessage.Content += "\r\n\r\n【子骞的测试公众号】";
+
+            //微信请求只会等待开发者服务器响应时间5s
+            //我们可以使用队列，线程处理，及时回复微信，在后台完成耗时的逻辑
+        }
+
+        return base.OnExecutedAsync(cancellationToken);
     }
 }
