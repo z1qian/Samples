@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Senparc.CO2NET.Cache;
-using Senparc.Weixin.Cache;
+using System.Diagnostics;
 
 namespace 缓存.Controllers;
 [Route("api/[controller]/[action]")]
@@ -12,7 +12,6 @@ public class ValuesController : ControllerBase
     {
         get
         {
-            Thread.Sleep(100);
             return count;
         }
         set
@@ -22,24 +21,25 @@ public class ValuesController : ControllerBase
         }
     }
 
-    [HttpGet]
-    public int GetCount()
+    [HttpPost]
+    public void GetCount()
     {
         //var stragety = ContainerCacheStrategyFactory.GetContainerCacheStrategyInstance().BaseCacheStrategy();
-
         //using (stragety.BeginCacheLock("SenparcClass", "LockTest"))
+
         var strategy = CacheStrategyFactory.GetObjectCacheStrategyInstance();
         using (strategy.BeginCacheLock("SenparcClass", "LockTest"))
         {
-            var count = Count;
-            Thread.Sleep(2);
-            Count = count + 1;
+            int c = Count;
 
-            return Count;
+            Count = c + 1;
+            Debug.WriteLine("结果：" + Count);
+
+            finishedThreadCount++;
         }
     }
 
-    private int totalThreadCount = 100;
+    private const int totalThreadCount = 100;
     private int finishedThreadCount = 0;
     [HttpPost]
     public void LockTest()
@@ -47,22 +47,14 @@ public class ValuesController : ControllerBase
         List<Thread> threads = new List<Thread>();
         for (int i = 0; i < totalThreadCount; i++)
         {
-            var thread = new Thread(RunSingleRequest);
+            var thread = new Thread(GetCount);
             thread.Start();
         }
 
-        //while (finishedThreadCount <= totalThreadCount)
-        //{
+        while (finishedThreadCount < totalThreadCount)
+        {
+        }
 
-        //}
-
-        //Console.WriteLine("测试完成，线程总数：" + totalThreadCount);
-    }
-
-    private void RunSingleRequest()
-    {
-        Console.WriteLine("结果：" + GetCount());
-
-        finishedThreadCount++;
+        Debug.WriteLine("测试完成，线程总数：" + finishedThreadCount);
     }
 }
