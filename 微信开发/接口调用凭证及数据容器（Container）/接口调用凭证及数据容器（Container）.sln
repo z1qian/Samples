@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34302.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "接口调用凭证及数据容器（Container）", "接口调用凭证及数据容器（Container）\接口调用凭证及数据容器（Container）.csproj", "{5B7597C3-F0F1-482B-AB3F-1DD4BB1A34A4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SenparcClass.Service", "..\MessageHandlerPro\SenparcClass.Service\SenparcClass.Service.csproj", "{26CB5AB9-7217-4CF2-8802-911EAC165E48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5B7597C3-F0F1-482B-AB3F-1DD4BB1A34A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B7597C3-F0F1-482B-AB3F-1DD4BB1A34A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B7597C3-F0F1-482B-AB3F-1DD4BB1A34A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26CB5AB9-7217-4CF2-8802-911EAC165E48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26CB5AB9-7217-4CF2-8802-911EAC165E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26CB5AB9-7217-4CF2-8802-911EAC165E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26CB5AB9-7217-4CF2-8802-911EAC165E48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

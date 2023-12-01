@@ -1,6 +1,7 @@
 ﻿using Senparc.NeuChar.App.AppStore;
 using Senparc.NeuChar.Entities;
 using Senparc.NeuChar.Entities.Request;
+using Senparc.Weixin.MP.Containers;
 using Senparc.Weixin.MP.Entities;
 using Senparc.Weixin.MP.Entities.Request;
 using Senparc.Weixin.MP.MessageHandlers;
@@ -14,6 +15,9 @@ namespace SenparcClass.Service;
 /// </summary>
 public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如果不需要自定义，可以直接使用：MessageHandler<DefaultMpMessageContext> */
 {
+    private string appId = Senparc.Weixin.Config.SenparcWeixinSetting.MpSetting.WeixinAppId;
+    private string appSecret = Senparc.Weixin.Config.SenparcWeixinSetting.MpSetting.WeixinAppSecret;
+
     public CustomMessageHandler(Stream inputStream, PostModel postModel, int maxRecordCount = 0, bool onlyAllowEncryptMessage = false, DeveloperInfo developerInfo = null, IServiceProvider serviceProvider = null) : base(inputStream, postModel, maxRecordCount, onlyAllowEncryptMessage, developerInfo, serviceProvider)
     {
         //这里设置仅用于测试，实际开发可以在外部更全局的地方设置，
@@ -255,5 +259,25 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
         }
 
         return base.OnExecutedAsync(cancellationToken);
+    }
+
+    /// <summary>
+    /// 关注事件
+    /// </summary>
+    /// <param name="requestMessage"></param>
+    /// <returns></returns>
+    public override async Task<IResponseMessageBase> OnEvent_SubscribeRequestAsync(RequestMessageEvent_Subscribe requestMessage)
+    {
+        var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+
+        var accessToken = await AccessTokenContainer.GetAccessTokenAsync(appId);
+
+        //var userInfo = Senparc.Weixin.MP.AdvancedAPIs.UserApi.Info(accessToken, requestMessage.FromUserName);
+        var userInfo = Senparc.Weixin.MP.AdvancedAPIs.UserApi.Info(appId, OpenId);
+        string nickName = userInfo.nickname;
+        string sexName = userInfo.sex == 1 ? "先生" : (userInfo.sex == 2 ? "女士" : "未知");
+
+        responseMessage.Content = $"你好，{nickName}{sexName}，欢迎关注【子骞的测试公众号】！";
+        return responseMessage;
     }
 }
