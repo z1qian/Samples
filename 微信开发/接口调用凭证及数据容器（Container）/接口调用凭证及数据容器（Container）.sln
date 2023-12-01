@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34302.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "接口调用凭证及数据容器（Container）", "接口调用凭证及数据容器（Container）\接口调用凭证及数据容器（Container）.csproj", "{5B7597C3-F0F1-482B-AB3F-1DD4BB1A34A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5B7597C3-F0F1-482B-AB3F-1DD4BB1A34A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B7597C3-F0F1-482B-AB3F-1DD4BB1A34A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B7597C3-F0F1-482B-AB3F-1DD4BB1A34A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B7597C3-F0F1-482B-AB3F-1DD4BB1A34A4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF0BDC98-A645-453D-A21B-F571C1869EF3}
+	EndGlobalSection
+EndGlobal
