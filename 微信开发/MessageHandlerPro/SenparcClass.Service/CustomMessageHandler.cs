@@ -213,18 +213,22 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
         }
     }
 
-    public override Task<IResponseMessageBase> OnTextOrEventRequestAsync(RequestMessageText requestMessage)
+    public override async Task<IResponseMessageBase> OnTextOrEventRequestAsync(RequestMessageText requestMessage)
     {
         if (requestMessage.Content == "zxc")
         {
             var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
             responseMessage.Content = $"你在OnTextOrEventRequestAsync中触发了关键字{requestMessage.Content}";
 
-            return Task.FromResult(responseMessage as IResponseMessageBase);
+            //发送客服消息
+            await Senparc.Weixin.MP.AdvancedAPIs.CustomApi.SendTextAsync(appId, OpenId,
+                  "你马上要收到一条文字消息。<a href=\"https://www.baidu.com\">点击进入百度</a>\r\n这里已经换了一行\r\n这里又换了一行");
+
+            return responseMessage;
         }
 
         //return null;
-        return base.OnTextOrEventRequestAsync(requestMessage);
+        return await base.OnTextOrEventRequestAsync(requestMessage);
     }
 
     public override async Task OnExecutingAsync(CancellationToken cancellationToken)
