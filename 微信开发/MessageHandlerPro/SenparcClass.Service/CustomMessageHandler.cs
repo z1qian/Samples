@@ -1,10 +1,13 @@
-﻿using Senparc.NeuChar.App.AppStore;
+﻿using Senparc.NeuChar;
+using Senparc.NeuChar.App.AppStore;
 using Senparc.NeuChar.Entities;
 using Senparc.NeuChar.Entities.Request;
+using Senparc.Weixin.MP.AdvancedAPIs;
 using Senparc.Weixin.MP.Containers;
 using Senparc.Weixin.MP.Entities;
 using Senparc.Weixin.MP.Entities.Request;
 using Senparc.Weixin.MP.MessageHandlers;
+using System.Diagnostics;
 using System.Xml.Linq;
 
 namespace SenparcClass.Service;
@@ -17,6 +20,7 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
 {
     private string appId = Senparc.Weixin.Config.SenparcWeixinSetting.MpSetting.WeixinAppId;
     private string appSecret = Senparc.Weixin.Config.SenparcWeixinSetting.MpSetting.WeixinAppSecret;
+    private Stopwatch stopwatch;
 
     public CustomMessageHandler(Stream inputStream, PostModel postModel, int maxRecordCount = 0, bool onlyAllowEncryptMessage = false, DeveloperInfo developerInfo = null, IServiceProvider serviceProvider = null) : base(inputStream, postModel, maxRecordCount, onlyAllowEncryptMessage, developerInfo, serviceProvider)
     {
@@ -259,7 +263,26 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
             textMessage.Content += "\r\n\r\n【子骞的测试公众号】";
 
             //微信请求只会等待开发者服务器响应时间5s
-            //我们可以使用队列，线程处理，及时回复微信，在后台完成耗时的逻辑
+            //我们可以使用队列，线程处理，完成耗时的逻辑，然后通过客服接口发送消息给用户
+        }
+
+        Thread.Sleep(6000);
+        // 停止计时
+        stopwatch.Stop();
+        // 获取经过的时间并输出
+        TimeSpan elapsedTime = stopwatch.Elapsed;
+        var runTime = elapsedTime.TotalSeconds;
+
+        if (runTime > 4)
+        {
+            if (ResponseMessage is ResponseMessageText textMessageTimeout)
+            {
+                textMessageTimeout.Content += "\r\n\r\n - 这条消息来自客服接口，耗时：" + runTime + "秒";
+
+                //发送客服消息
+                CustomApi.SendText(appId, OpenId, textMessageTimeout.Content);
+                ResponseMessage = new ResponseMessageNoResponse();
+            }
         }
 
         return base.OnExecutedAsync(cancellationToken);
@@ -283,5 +306,13 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
 
         responseMessage.Content = $"你好，{nickName}{sexName}，欢迎关注【子骞的测试公众号】！";
         return responseMessage;
+    }
+
+    public override XDocument Init(XDocument postDataDocument, IEncryptPostModel postModel)
+    {
+        stopwatch = new Stopwatch();
+        // 开始计时
+        stopwatch.Start();
+        return base.Init(postDataDocument, postModel);
     }
 }

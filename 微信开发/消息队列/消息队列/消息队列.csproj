@@ -15,6 +15,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="App_Data\WeChat_OfficialAccount\" />
+	  <Folder Include="App_Data\" />
 	</ItemGroup>
 </Project>
