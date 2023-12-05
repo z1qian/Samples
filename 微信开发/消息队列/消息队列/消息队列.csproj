@@ -13,8 +13,5 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\MessageHandlerPro\SenparcClass.Service\SenparcClass.Service.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="App_Data\" />
-	</ItemGroup>
+	
 </Project>

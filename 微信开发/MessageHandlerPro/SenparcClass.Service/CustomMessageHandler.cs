@@ -275,14 +275,8 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
 
         if (runTime > 4)
         {
-            if (ResponseMessage is ResponseMessageText textMessageTimeout)
-            {
-                textMessageTimeout.Content += "\r\n\r\n - 这条消息来自客服接口，耗时：" + runTime + "秒";
-
-                //发送客服消息
-                CustomApi.SendText(appId, OpenId, textMessageTimeout.Content);
-                ResponseMessage = new ResponseMessageNoResponse();
-            }
+            MessageQueueHandler queueHandler = new MessageQueueHandler();
+            ResponseMessage = queueHandler.SendMessage(OpenId, appId, ResponseMessage);
         }
 
         return base.OnExecutedAsync(cancellationToken);
