@@ -400,3 +400,4 @@ FodyWeavers.xsd
 # App_Data
 /微信开发/MessageHandlerPro/MessageHandler/App_Data/
 /微信开发/接口调用凭证及数据容器（Container）/接口调用凭证及数据容器（Container）/App_Data/
+/微信开发/消息队列/消息队列/App_Data/
