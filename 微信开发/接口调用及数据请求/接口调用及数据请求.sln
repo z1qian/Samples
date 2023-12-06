@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "接口调用及数据请求", "接口调用及数据请求\接口调用及数据请求.csproj", "{49EC2255-A053-4C52-B808-07CFB109AF2D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SenparcClass.Service", "..\MessageHandlerPro\SenparcClass.Service\SenparcClass.Service.csproj", "{7BFE2AC1-4BAD-4FC5-A461-9F058B434A39}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49EC2255-A053-4C52-B808-07CFB109AF2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49EC2255-A053-4C52-B808-07CFB109AF2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49EC2255-A053-4C52-B808-07CFB109AF2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49EC2255-A053-4C52-B808-07CFB109AF2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BFE2AC1-4BAD-4FC5-A461-9F058B434A39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BFE2AC1-4BAD-4FC5-A461-9F058B434A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BFE2AC1-4BAD-4FC5-A461-9F058B434A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BFE2AC1-4BAD-4FC5-A461-9F058B434A39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {859B5DCC-E34A-42C6-8D37-1B8BF05754F8}
+	EndGlobalSection
+EndGlobal
