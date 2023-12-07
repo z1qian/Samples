@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Text;
 
 namespace 接口调用及数据请求.Controllers;
@@ -23,8 +24,13 @@ public class RequestController : BaseController
         return Content(html, "text/html");
     }
 
-    public void Test()
-    {
-        Senparc.CO2NET.HttpUtility.js
+    [HttpGet]
+    public async Task<ActionResult> SimulateLogin(string url = "http://www.baidu.com")
+    {     
+        var cookieContainer = new CookieContainer();
+        var html = await Senparc.CO2NET.HttpUtility.RequestUtility.HttpGetAsync(_serviceProvider,
+            url, cookieContainer, Encoding.UTF8);
+
+        return Content(html, "text/html");
     }
 }
