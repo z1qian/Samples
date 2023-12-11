@@ -6,8 +6,10 @@ using Senparc.Weixin.MP.Containers;
 using Senparc.Weixin.MP.Entities;
 using Senparc.Weixin.MP.Entities.Request;
 using Senparc.Weixin.MP.MessageHandlers;
+using SenparcClass.Service.Class10;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Web;
 using System.Xml.Linq;
 
 namespace SenparcClass.Service;
@@ -21,12 +23,14 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
     private string appId = Senparc.Weixin.Config.SenparcWeixinSetting.MpSetting.WeixinAppId;
     private string appSecret = Senparc.Weixin.Config.SenparcWeixinSetting.MpSetting.WeixinAppSecret;
     private Stopwatch stopwatch;
+    private readonly IServiceProvider _serviceProvider;
 
     public CustomMessageHandler(Stream inputStream, PostModel postModel, int maxRecordCount = 0, bool onlyAllowEncryptMessage = false, DeveloperInfo developerInfo = null, IServiceProvider serviceProvider = null) : base(inputStream, postModel, maxRecordCount, onlyAllowEncryptMessage, developerInfo, serviceProvider)
     {
         //这里设置仅用于测试，实际开发可以在外部更全局的地方设置，
         //比如MessageHandler<MessageContext>.GlobalGlobalMessageContext.ExpireMinutes = 3。
         GlobalMessageContext.ExpireMinutes = 3;
+        _serviceProvider = serviceProvider;
     }
 
     public CustomMessageHandler(XDocument requestDocument, PostModel postModel, int maxRecordCount = 0, bool onlyAllowEncryptMessage = false, DeveloperInfo developerInfo = null, IServiceProvider serviceProvider = null) : base(requestDocument, postModel, maxRecordCount, onlyAllowEncryptMessage, developerInfo, serviceProvider)
@@ -111,18 +115,22 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
                  responseMessage.Content = result;
                  return responseMessage;
              })
-             .Regex(@"天气\s+([\u4e00-\u9fff]+)", () =>
+             .Regex(@"天气\s+([\u4e00-\u9fff]+)",  () =>
              {
                  //正则肯定匹配成功，不然进不来
                  var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
-                
+
                  Match match = Regex.Match(requestMessage.Content, @"天气\s+([\u4e00-\u9fff]+)");
 
                  if (match.Success)
                  {
                      Group cityGroup = match.Groups[1]; // 获取匹配的城市名捕获组
                      string city = cityGroup.Value; // 提取城市名
-                     responseMessage.Content = city;
+
+                     var url = "http://t.weather.sojson.com/api/weather/city/101190401";
+                     var result =  Senparc.CO2NET.HttpUtility.Get.GetJson<WeatherResult>(_serviceProvider, url);
+
+                     responseMessage.Content = result.message;
                  }
                  else
                  {
