@@ -2,12 +2,12 @@
 using Senparc.NeuChar.App.AppStore;
 using Senparc.NeuChar.Entities;
 using Senparc.NeuChar.Entities.Request;
-using Senparc.Weixin.MP.AdvancedAPIs;
 using Senparc.Weixin.MP.Containers;
 using Senparc.Weixin.MP.Entities;
 using Senparc.Weixin.MP.Entities.Request;
 using Senparc.Weixin.MP.MessageHandlers;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 namespace SenparcClass.Service;
@@ -109,6 +109,26 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
 
                  var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
                  responseMessage.Content = result;
+                 return responseMessage;
+             })
+             .Regex(@"天气\s+([\u4e00-\u9fff]+)", () =>
+             {
+                 //正则肯定匹配成功，不然进不来
+                 var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+                
+                 Match match = Regex.Match(requestMessage.Content, @"天气\s+([\u4e00-\u9fff]+)");
+
+                 if (match.Success)
+                 {
+                     Group cityGroup = match.Groups[1]; // 获取匹配的城市名捕获组
+                     string city = cityGroup.Value; // 提取城市名
+                     responseMessage.Content = city;
+                 }
+                 else
+                 {
+                     responseMessage.Content = "未匹配到城市。";
+                 }
+
                  return responseMessage;
              })
              .Default(() =>
@@ -266,7 +286,7 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
             //我们可以使用队列，线程处理，完成耗时的逻辑，然后通过客服接口发送消息给用户
         }
 
-        Thread.Sleep(6000);
+        //Thread.Sleep(6000);
         // 停止计时
         stopwatch.Stop();
         // 获取经过的时间并输出
