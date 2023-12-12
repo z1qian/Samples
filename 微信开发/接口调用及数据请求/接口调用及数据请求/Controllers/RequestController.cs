@@ -8,10 +8,12 @@ namespace 接口调用及数据请求.Controllers;
 public class RequestController : BaseController
 {
     private readonly IServiceProvider _serviceProvider;
+    private readonly IWebHostEnvironment _hostingEnvironment;
 
-    public RequestController(IServiceProvider sp)
+    public RequestController(IServiceProvider sp, IWebHostEnvironment hostingEnvironment)
     {
         _serviceProvider = sp;
+        _hostingEnvironment = hostingEnvironment;
     }
 
     [HttpGet]
@@ -54,4 +56,39 @@ public class RequestController : BaseController
 
         return Content(html, "text/html", Encoding.UTF8);
     }
+
+    [HttpGet]
+    public async Task<ActionResult> GetImage(string url = "https://sdk.weixin.senparc.com/images/book-cover-front-small-3d-transparent.png")
+    {
+        // 获取应用程序根目录路径
+        string contentRootPath = _hostingEnvironment.ContentRootPath;
+        // 构建 App_Data 文件夹的完整路径
+        string appDataPath = Path.Combine(contentRootPath, "App_Data");
+
+        string filePath = Path.Combine(appDataPath, "Download\\");
+
+        string fileName = await Senparc.CO2NET.HttpUtility.Get.DownloadAsync(_serviceProvider, url, filePath);
+
+        return Content(fileName);
+    }
+
+    [HttpGet]
+    public async Task<ActionResult> GetAndUploadImage(string url = "https://sdk.weixin.senparc.com/images/book-cover-front-small-3d-transparent.png")
+    {
+        //// 获取应用程序根目录路径
+        //string contentRootPath = _hostingEnvironment.ContentRootPath;
+        //// 构建 App_Data 文件夹的完整路径
+        //string appDataPath = Path.Combine(contentRootPath, "App_Data");
+
+        //string filePath = Path.Combine(appDataPath, "Download\\");
+
+        using MemoryStream ms = new MemoryStream();
+        await Senparc.CO2NET.HttpUtility.Get.DownloadAsync(_serviceProvider, url, ms);
+        ms.Position = 0;
+        await Senparc.CO2NET.HttpUtility.RequestUtility.HttpPostAsync(_serviceProvider, "", postStream: ms);
+
+        return Content("");
+    }
+
+
 }
