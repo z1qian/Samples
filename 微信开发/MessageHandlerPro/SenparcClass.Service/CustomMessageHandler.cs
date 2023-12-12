@@ -115,7 +115,7 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
                  responseMessage.Content = result;
                  return responseMessage;
              })
-             .Regex(@"天气\s+([\u4e00-\u9fff]+)",  () =>
+             .Regex(@"天气\s+([\u4e00-\u9fff]+)", () =>
              {
                  //正则肯定匹配成功，不然进不来
                  var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
@@ -127,10 +127,30 @@ public class CustomMessageHandler : MessageHandler<CustomMessageContext>  /*如�
                      Group cityGroup = match.Groups[1]; // 获取匹配的城市名捕获组
                      string city = cityGroup.Value; // 提取城市名
 
+                     //固定为苏州：101190401
                      var url = "http://t.weather.sojson.com/api/weather/city/101190401";
-                     var result =  Senparc.CO2NET.HttpUtility.Get.GetJson<WeatherResult>(_serviceProvider, url);
 
-                     responseMessage.Content = result.message;
+                     try
+                     {
+                         var result = Senparc.CO2NET.HttpUtility.Get.GetJson<WeatherResult>(_serviceProvider, url);
+
+                         responseMessage.Content = $@"天气更新时间：{result.cityInfo.updateTime}
+城市：{result.cityInfo.parent}省{result.cityInfo.city}
+湿度：{result.data.shidu}
+PM2.5：{result.data.pm25}
+空气质量：{result.data.quality}
+感冒提醒（指数）：{result.data.ganmao}
+星期：{result.data.forecast[0].week}
+最高温度：{result.data.forecast[0].high}
+最低温度：{result.data.forecast[0].low}
+
+{result.data.forecast[0].type} {result.data.forecast[0].notice}~";
+                     }
+                     catch (Exception ex)
+                     {
+                         responseMessage.Content = ex.Message;
+                     }
+
                  }
                  else
                  {

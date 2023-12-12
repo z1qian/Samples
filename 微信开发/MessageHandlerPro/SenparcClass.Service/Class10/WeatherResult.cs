@@ -135,11 +135,11 @@ public class WeatherResult
         /// <summary>
         /// 
         /// </summary>
-        public int pm25 { get; set; }
+        public double pm25 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int pm10 { get; set; }
+        public double pm10 { get; set; }
         /// <summary>
         /// 优
         /// </summary>

@@ -19,6 +19,13 @@ public class WeixinController : BaseController
 
     readonly Func<string> _getRandomFileName = () => SystemTime.Now.ToString("yyyyMMdd-HHmmss") + Guid.NewGuid().ToString("n").Substring(0, 6);
 
+    private readonly IServiceProvider _serviceProvider;
+
+    public WeixinController(IServiceProvider serviceProvider)
+    {
+        _serviceProvider = serviceProvider;
+    }
+
     /// <summary>
     /// 微信后台验证地址（使用Get），微信后台的“接口配置信息”的Url填写如：http://sdk.weixin.senparc.com/weixin
     /// </summary>
@@ -62,7 +69,8 @@ public class WeixinController : BaseController
         var maxRecordCount = 10;
 
         //自定义MessageHandler，对微信请求的详细判断操作都在这里面。
-        var messageHandler = new CustomMessageHandler(await Request.GetRequestMemoryStreamAsync(), postModel, maxRecordCount);//接收消息（第一步）
+        var messageHandler = new CustomMessageHandler(await Request.GetRequestMemoryStreamAsync(), postModel,
+            maxRecordCount, serviceProvider: _serviceProvider);//接收消息（第一步）
 
         #region 设置消息去重设置 + 优先调用同步、异步方法设置
 
