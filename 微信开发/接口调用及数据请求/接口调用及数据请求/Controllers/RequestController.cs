@@ -8,12 +8,10 @@ namespace 接口调用及数据请求.Controllers;
 public class RequestController : BaseController
 {
     private readonly IServiceProvider _serviceProvider;
-    private readonly IWebHostEnvironment _hostingEnvironment;
 
-    public RequestController(IServiceProvider sp, IWebHostEnvironment hostingEnvironment)
+    public RequestController(IServiceProvider sp, IWebHostEnvironment hostingEnvironment) : base(hostingEnvironment)
     {
         _serviceProvider = sp;
-        _hostingEnvironment = hostingEnvironment;
     }
 
     [HttpGet]
@@ -58,14 +56,10 @@ public class RequestController : BaseController
     }
 
     [HttpGet]
-    public async Task<ActionResult> GetImage(string url = "https://sdk.weixin.senparc.com/images/book-cover-front-small-3d-transparent.png")
+    public async Task<ActionResult> GetImage(string url =
+        "https://sdk.weixin.senparc.com/images/book-cover-front-small-3d-transparent.png")
     {
-        // 获取应用程序根目录路径
-        string contentRootPath = _hostingEnvironment.ContentRootPath;
-        // 构建 App_Data 文件夹的完整路径
-        string appDataPath = Path.Combine(contentRootPath, "App_Data");
-
-        string filePath = Path.Combine(appDataPath, "Download\\");
+        string filePath = Path.Combine(AppDataPath, "Download\\");
 
         string fileName = await Senparc.CO2NET.HttpUtility.Get.DownloadAsync(_serviceProvider, url, filePath);
 
@@ -90,5 +84,17 @@ public class RequestController : BaseController
         return Content("");
     }
 
+    [HttpPost]
+    public async Task<ActionResult> UploadImage()
+    {
+        var inputStream = Request.Body;
 
+        string fileName = Path.Combine(AppDataPath, "Upload\\", "123.jpg");
+
+        using FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate);
+        await inputStream.CopyToAsync(fs);
+        fs.Seek(0, SeekOrigin.Begin);
+
+        return Content(fileName);
+    }
 }

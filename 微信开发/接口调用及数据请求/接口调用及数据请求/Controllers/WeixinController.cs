@@ -21,7 +21,7 @@ public class WeixinController : BaseController
 
     private readonly IServiceProvider _serviceProvider;
 
-    public WeixinController(IServiceProvider serviceProvider)
+    public WeixinController(IWebHostEnvironment hostingEnvironment, IServiceProvider serviceProvider) : base(hostingEnvironment)
     {
         _serviceProvider = serviceProvider;
     }
