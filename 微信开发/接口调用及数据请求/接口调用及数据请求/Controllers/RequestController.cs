@@ -63,25 +63,24 @@ public class RequestController : BaseController
 
         string fileName = await Senparc.CO2NET.HttpUtility.Get.DownloadAsync(_serviceProvider, url, filePath);
 
+        Dictionary<string, string> dic = new Dictionary<string, string>();
+        dic["file"] = fileName;
+
+        await Senparc.CO2NET.HttpUtility.RequestUtility.HttpPostAsync(_serviceProvider, "https://localhost:7099/Request/UploadFile", fileDictionary: dic);
+
         return Content(fileName);
     }
 
     [HttpGet]
     public async Task<ActionResult> GetAndUploadImage(string url = "https://sdk.weixin.senparc.com/images/book-cover-front-small-3d-transparent.png")
     {
-        //// 获取应用程序根目录路径
-        //string contentRootPath = _hostingEnvironment.ContentRootPath;
-        //// 构建 App_Data 文件夹的完整路径
-        //string appDataPath = Path.Combine(contentRootPath, "App_Data");
-
-        //string filePath = Path.Combine(appDataPath, "Download\\");
-
         using MemoryStream ms = new MemoryStream();
         await Senparc.CO2NET.HttpUtility.Get.DownloadAsync(_serviceProvider, url, ms);
         ms.Position = 0;
-        await Senparc.CO2NET.HttpUtility.RequestUtility.HttpPostAsync(_serviceProvider, "", postStream: ms);
+        await Senparc.CO2NET.HttpUtility.RequestUtility.HttpPostAsync(_serviceProvider,
+            "https://localhost:7099/Request/UploadImage", postStream: ms);
 
-        return Content("");
+        return Content("ok");
     }
 
     [HttpPost]
@@ -89,10 +88,22 @@ public class RequestController : BaseController
     {
         var inputStream = Request.Body;
 
-        string fileName = Path.Combine(AppDataPath, "Upload\\", "123.jpg");
+        string fileName = Path.Combine(AppDataPath, $"{DateTime.Now.Ticks}.png");
 
-        using FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate);
+        using FileStream fs = new FileStream(fileName, FileMode.Create);
         await inputStream.CopyToAsync(fs);
+        fs.Seek(0, SeekOrigin.Begin);
+
+        return Content(fileName);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> UploadFile(IFormFile file)
+    {
+        string fileName = Path.Combine(AppDataPath, $"{file.FileName}.png");
+
+        using FileStream fs = new FileStream(fileName, FileMode.Create);
+        await file.CopyToAsync(fs);
         fs.Seek(0, SeekOrigin.Begin);
 
         return Content(fileName);
