@@ -66,13 +66,27 @@ public class RequestController : BaseController
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic["file"] = fileName;
 
-        await Senparc.CO2NET.HttpUtility.RequestUtility.HttpPostAsync(_serviceProvider, "https://localhost:7099/Request/UploadFile", fileDictionary: dic);
+        await Senparc.CO2NET.HttpUtility.RequestUtility.HttpPostAsync(_serviceProvider,
+            "https://localhost:7099/Request/UploadFile", fileDictionary: dic);
+
+        return Content(fileName);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> UploadFile(IFormFile file)
+    {
+        string fileName = Path.Combine(AppDataPath, $"{file.FileName}.png");
+
+        using FileStream fs = new FileStream(fileName, FileMode.Create);
+        await file.CopyToAsync(fs);
+        fs.Seek(0, SeekOrigin.Begin);
 
         return Content(fileName);
     }
 
     [HttpGet]
-    public async Task<ActionResult> GetAndUploadImage(string url = "https://sdk.weixin.senparc.com/images/book-cover-front-small-3d-transparent.png")
+    public async Task<ActionResult> GetAndUploadImage(string url =
+        "https://sdk.weixin.senparc.com/images/book-cover-front-small-3d-transparent.png")
     {
         using MemoryStream ms = new MemoryStream();
         await Senparc.CO2NET.HttpUtility.Get.DownloadAsync(_serviceProvider, url, ms);
@@ -92,19 +106,6 @@ public class RequestController : BaseController
 
         using FileStream fs = new FileStream(fileName, FileMode.Create);
         await inputStream.CopyToAsync(fs);
-        fs.Seek(0, SeekOrigin.Begin);
-
-        return Content(fileName);
-    }
-
-    [HttpPost]
-    public async Task<ActionResult> UploadFile(IFormFile file)
-    {
-        string fileName = Path.Combine(AppDataPath, $"{file.FileName}.png");
-
-        using FileStream fs = new FileStream(fileName, FileMode.Create);
-        await file.CopyToAsync(fs);
-        fs.Seek(0, SeekOrigin.Begin);
 
         return Content(fileName);
     }
