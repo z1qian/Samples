@@ -1,7 +1,11 @@
+using Senparc.Weixin;
 using Senparc.Weixin.AspNet;
 using Senparc.Weixin.MP;
 using Senparc.Weixin.RegisterServices;
+using System.Diagnostics;
 
+Stopwatch stopwatch = new Stopwatch();
+stopwatch.Start();
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -40,4 +44,9 @@ app.UseRouting();
 
 app.MapGet("/", () => "Hello World!");
 app.MapControllers();
+
+stopwatch.Stop();
+TimeSpan elapsedTime = stopwatch.Elapsed;
+var a = Senparc.CO2NET.Config.IsDebug;
+WeixinTrace.SendCustomLog("系统日志", "系统已启动，启动时间：" + elapsedTime.TotalSeconds + "秒");
 app.Run();
