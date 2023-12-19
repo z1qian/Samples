@@ -1,3 +1,4 @@
+using Senparc.CO2NET.Extensions;
 using Senparc.Weixin;
 using Senparc.Weixin.AspNet;
 using Senparc.Weixin.MP;
@@ -47,6 +48,23 @@ app.MapControllers();
 
 stopwatch.Stop();
 TimeSpan elapsedTime = stopwatch.Elapsed;
-var a = Senparc.CO2NET.Config.IsDebug;
+
+WeixinTraceConfig();
+
 WeixinTrace.SendCustomLog("系统日志", "系统已启动，启动时间：" + elapsedTime.TotalSeconds + "秒");
 app.Run();
+
+void WeixinTraceConfig()
+{
+    Senparc.CO2NET.Config.IsDebug = true;
+
+    Senparc.Weixin.WeixinTrace.OnLogFunc = () =>
+    {
+        Console.WriteLine("--------------------日志被输出！");
+    };
+
+    Senparc.Weixin.WeixinTrace.OnWeixinExceptionFunc = ex =>
+    {
+        Console.WriteLine(ex.ToJson());
+    };
+}
