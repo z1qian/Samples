@@ -29,8 +29,19 @@ public class RequestController : Controller
         return Content("Debug状态已关闭。");
     }
 
+    class MyClass
+    {
+        public string? Data { get; set; }
+    }
+
     public ActionResult ThrowException()
     {
-        throw new WeixinNullReferenceException($"这是一个测试{nameof(WeixinNullReferenceException)}异常");
+        var myClass = new MyClass();
+        if (myClass.Data == null)
+        {
+            throw new WeixinNullReferenceException("myClass.Data为null", myClass);
+        }
+
+        return Content("ok");
     }
 }
