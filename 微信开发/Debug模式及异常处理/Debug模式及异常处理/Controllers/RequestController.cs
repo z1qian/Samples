@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Senparc.Weixin;
+using Senparc.Weixin.Exceptions;
 using Senparc.Weixin.MP.Containers;
 
 namespace Debug模式及异常处理.Controllers;
@@ -26,5 +27,10 @@ public class RequestController : Controller
         Senparc.CO2NET.Config.IsDebug = false;
         Senparc.Weixin.WeixinTrace.SendCustomLog("接口日志", "Debug状态已关闭。");
         return Content("Debug状态已关闭。");
+    }
+
+    public ActionResult ThrowException()
+    {
+        throw new WeixinNullReferenceException($"这是一个测试{nameof(WeixinNullReferenceException)}异常");
     }
 }

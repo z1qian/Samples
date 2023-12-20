@@ -65,6 +65,6 @@ void WeixinTraceConfig()
 
     Senparc.Weixin.WeixinTrace.OnWeixinExceptionFunc = ex =>
     {
-        Console.WriteLine(ex.ToJson());
+        Console.WriteLine("发生微信异常：" + ex.ToJson());
     };
 }
