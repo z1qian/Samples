@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "模板消息", "模板消息\模板消息.csproj", "{6A47EAB1-D364-4749-BD9A-48CAB8A822D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "模板消息", "模板消息\模板消息.csproj", "{6A47EAB1-D364-4749-BD9A-48CAB8A822D8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SenparcClass.Service", "..\MessageHandlerPro\SenparcClass.Service\SenparcClass.Service.csproj", "{D3F53C8B-97C6-4967-999F-7864F8571FC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6A47EAB1-D364-4749-BD9A-48CAB8A822D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A47EAB1-D364-4749-BD9A-48CAB8A822D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A47EAB1-D364-4749-BD9A-48CAB8A822D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3F53C8B-97C6-4967-999F-7864F8571FC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3F53C8B-97C6-4967-999F-7864F8571FC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3F53C8B-97C6-4967-999F-7864F8571FC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3F53C8B-97C6-4967-999F-7864F8571FC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

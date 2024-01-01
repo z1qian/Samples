@@ -357,4 +357,20 @@ PM2.5：{result.data.pm25}
         stopwatch.Start();
         return base.Init(postDataDocument, postModel);
     }
+
+    public override async Task<IResponseMessageBase> OnEvent_TemplateSendJobFinishRequestAsync(RequestMessageEvent_TemplateSendJobFinish requestMessage)
+    {
+        //注意：此方法内不能再发送模板消息，否则会引发循环
+        if (requestMessage.Status == "success")
+        {
+            await Senparc.Weixin.MP.AdvancedAPIs.CustomApi.SendTextAsync(appId,
+                OpenId, "模板消息发送成功，MsgID：" + requestMessage.MsgID);
+        }
+        else
+        {
+            //进行逻辑处理
+        }
+
+        return new SuccessResponseMessage();
+    }
 }

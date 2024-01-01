@@ -8,7 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Senparc.Weixin.AspNet" Version="1.1.1" />
-    <PackageReference Include="Senparc.Weixin.MP" Version="16.20.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MessageHandlerPro\SenparcClass.Service\SenparcClass.Service.csproj" />
   </ItemGroup>
 
 </Project>
