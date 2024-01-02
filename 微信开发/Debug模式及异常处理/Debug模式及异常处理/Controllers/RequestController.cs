@@ -37,11 +37,25 @@ public class RequestController : Controller
     public ActionResult ThrowException()
     {
         var myClass = new MyClass();
-        if (myClass.Data == null)
+
+        try
         {
-            throw new WeixinNullReferenceException("myClass.Data为null", myClass);
+            if (myClass.Data == null)
+            {
+                throw new WeixinNullReferenceException("myClass.Data为null", myClass);
+            }
+        }
+        catch (WeixinNullReferenceException ex)
+        {
+            if (ex.ParentObject != null)
+            {
+                var po = ex.ParentObject as MyClass;
+                po!.Data = "not null";
+            }
         }
 
-        return Content("ok");
+        int length = myClass.Data!.Length;
+
+        return Content(length.ToString());
     }
 }
