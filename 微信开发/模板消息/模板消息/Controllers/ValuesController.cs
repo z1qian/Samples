@@ -9,6 +9,12 @@ namespace 模板消息.Controllers;
 [ApiController]
 public class ValuesController : ControllerBase
 {
+    private readonly ILogger<ValuesController> _logger;
+    public ValuesController(ILogger<ValuesController> logger)
+    {
+        _logger = logger;
+    }
+
     [HttpGet]
     public async Task<string> Send(string? openId = "o1iZy6bf5L3u_wPs8ixdGR-xoPBU")
     {
@@ -47,5 +53,24 @@ public class ValuesController : ControllerBase
         var result = await Senparc.Weixin.MP.AdvancedAPIs.TemplateApi.SendTemplateMessageAsync(null, openId, template);
 
         return result.ToJson();
+    }
+
+    [HttpGet]
+    public void Send2(string? openId = "o1iZy6bf5L3u_wPs8ixdGR-xoPBU")
+    {
+        //	应用名称：{{keyword1.DATA}} 异常：{{keyword2.DATA}} 类型：{{keyword3.DATA}} 错误码：{{keyword4.DATA}}
+
+        Task.Run(async () =>
+        {
+            TemplateMessageExceptionNotice template = new TemplateMessageExceptionNotice("线上商城",
+                "空引用", "ValuesController", "9999", "http://www.baidu.com");
+
+            var result = await Senparc.Weixin.MP.AdvancedAPIs.TemplateApi.SendTemplateMessageAsync(null, openId, template);
+
+            await Task.Delay(5000);
+            _logger.LogError($"【{DateTime.Now}】async over");
+        });
+
+        _logger.LogError($"【{DateTime.Now}】method over");
     }
 }
