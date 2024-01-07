@@ -1,0 +1,11 @@
+﻿@model Senparc.Weixin.MP.AdvancedAPIs.OAuth.OAuthUserInfo
+@{
+    ViewData["Title"] = $"{Model.nickname} 的详细信息";
+}
+
+<h1>@Model.nickname</h1>
+<p>OpenId：@Model.openid</p>
+<p>用户是否订阅该公众号：@Model.subscribe</p>
+<p>
+    <img src="@Model.headimgurl" width="200" alt="@Model.nickname" />
+</p>
