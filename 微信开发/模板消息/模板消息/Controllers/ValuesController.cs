@@ -35,9 +35,19 @@ public class ValuesController : ControllerBase
             remark = new TemplateDataItem("我是备注")
         };
 
+        //跳转Url
         string url = "http://love.qqtv5.com/web.php?id=iYPhqYm";
 
         var result = await Senparc.Weixin.MP.AdvancedAPIs.TemplateApi.SendTemplateMessageAsync(null, openId, bag.TemplateId, url, data);
+
+        //跳转小程序
+        //TemplateModel_MiniProgram miniProgram = new TemplateModel_MiniProgram()
+        //{
+        //    appid = "wxfcb0a0031394a51c",
+        //    pagepath = "pages/index/index"
+        //};
+        //var result = await Senparc.Weixin.MP.AdvancedAPIs.TemplateApi.SendTemplateMessageAsync(null, openId, bag.TemplateId,
+        //    null, data, miniProgram);
 
         return result.ToJson();
     }
