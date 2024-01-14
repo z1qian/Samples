@@ -11,10 +11,18 @@ public class JSSDKController : Controller
 
     public IActionResult Index()
     {
-        var jssdkUiPackage = JSSDKHelper.GetJsSdkUiPackage(Config.SenparcWeixinSetting.WeixinAppId,
-            Config.SenparcWeixinSetting.WeixinAppSecret, HttpContext.Request.GetDisplayUrl());
+        //var jssdkUiPackage = JSSDKHelper.GetJsSdkUiPackage(Config.SenparcWeixinSetting.WeixinAppId,
+        //    Config.SenparcWeixinSetting.WeixinAppSecret, HttpContext.Request.GetDisplayUrl());
 
-        return View(jssdkUiPackage);
+        return View();
+    }
+
+    public IActionResult OtherView()
+    {
+        //var jssdkUiPackage = JSSDKHelper.GetJsSdkUiPackage(Config.SenparcWeixinSetting.WeixinAppId,
+        //  Config.SenparcWeixinSetting.WeixinAppSecret, HttpContext.Request.GetDisplayUrl());
+
+        return View();
     }
 
     public override void OnActionExecuting(ActionExecutingContext context)
@@ -31,7 +39,9 @@ public class JSSDKController : Controller
 
         UserName ??= "空";
         ViewData["UserName"] = UserName;
+
+        var jssdkUiPackage = JSSDKHelper.GetJsSdkUiPackage(Config.SenparcWeixinSetting.WeixinAppId,
+          Config.SenparcWeixinSetting.WeixinAppSecret, HttpContext.Request.GetDisplayUrl());
+        ViewData.Model = jssdkUiPackage;
     }
-
-
 }
