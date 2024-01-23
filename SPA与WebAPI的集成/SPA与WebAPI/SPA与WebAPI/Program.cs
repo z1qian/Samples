@@ -27,6 +27,7 @@ if (app.Environment.IsDevelopment())
 //    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "clientApp/static"))
 //});
 
+app.UseStaticFiles();
 app.UseSpaStaticFiles();
 
 app.UseSpa(spa =>

@@ -49,3 +49,5 @@ app.Run();
   使用给定选项启用静态文件服务，当你访问 `/static` 地址下的静态文件时，它的物理文件路径为 `System.IO.Directory.GetCurrentDirectory() + "/clientApp/static")`
 
 * `app.UseSpaStaticFiles()` 是对 `app.UseStaticFiles(new StaticFileOptions()...)` 的封装
+
+* 可同时存在 `app.UseStaticFiles()` 与 `app.UseSpaStaticFiles()`，以同时达到对 `wwwroot` 和访问 `SPA` 页面的支持
