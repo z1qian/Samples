@@ -9,7 +9,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSpaStaticFiles(options =>
 {
-    options.RootPath = "clientApp";
+    options.RootPath = "ClientApp";
 });
 
 var app = builder.Build();
@@ -33,7 +33,7 @@ app.UseSpaStaticFiles();
 app.UseSpa(spa =>
 {
     spa.Options.DefaultPage = "/index.html";
-    spa.Options.SourcePath = "clientApp";
+    spa.Options.SourcePath = "ClientApp";
 });
 
 app.UseHttpsRedirection();
