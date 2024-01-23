@@ -6,9 +6,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddSpaStaticFiles(options =>
 {
-    options.RootPath = "ClientApp";
+    options.RootPath = "clientApp";
 });
 
 var app = builder.Build();
@@ -30,8 +31,8 @@ app.UseSpaStaticFiles();
 
 app.UseSpa(spa =>
 {
-    //spa.Options.DefaultPage = "/index.html";
-    spa.Options.SourcePath = "ClientApp";
+    spa.Options.DefaultPage = "/index.html";
+    spa.Options.SourcePath = "clientApp";
 });
 
 app.UseHttpsRedirection();
