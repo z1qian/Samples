@@ -32,7 +32,7 @@ app.UseSpa(spa =>
 app.Run();
 ```
 
-如果需要在 `WebAPI` 项目，一打开，就启动 `SPA` 界面，需要在 `launchSettings.json` 中，把 `launchUrl` 由 `swagger` 改成你想要的地址，比如：`admi`
+如果需要在 `WebAPI` 项目，一打开，就启动 `SPA` 界面，需要在 `launchSettings.json` 中，把 `launchUrl` 由 `swagger` 改成你想要的地址，比如：`admi`（注意：`launchSettings.json` 只适用于本地开发，发布后不会包含 `launchSettings.json` 文件）
 
 ## 代码解析
 
@@ -51,3 +51,14 @@ app.Run();
 * `app.UseSpaStaticFiles()` 是对 `app.UseStaticFiles(new StaticFileOptions()...)` 的封装
 
 * 可同时存在 `app.UseStaticFiles()` 与 `app.UseSpaStaticFiles()`，以同时达到对 `wwwroot` 和访问 `SPA` 页面的支持
+
+* 在发布后，发布文件列表中不会包含 `SPA` 的文件夹（`clientApp`），需要在项目文件中（`.csproj`）添加如下代码
+
+  ```c#
+  <ItemGroup>
+  	<!-- 包含 ClientApp 文件夹及其内容 -->
+  	<Content Include="ClientApp\**" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+  ```
+
+  
