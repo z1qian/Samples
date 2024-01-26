@@ -1,0 +1,16 @@
+﻿@model 微信支付.Models.ViewData.TenPayV3_Index
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h2>产品列表</h2>
+<ul>
+    @foreach (var item in Model.ProductList)
+    {
+        <li>
+            @item
+        </li>
+    }
+</ul>
