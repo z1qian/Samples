@@ -6,11 +6,13 @@ namespace 微信支付.Models.ViewData
     public class Base_TenPayV3VD
     {
         public JsSdkUiPackage JsSdkUiPackage { get; set; }
+
+        public string Msg { get; set; }
     }
 
     public class TenPayV3_Index : Base_TenPayV3VD
     {
-        public string[] ProductList { get; set; }
+        public Dictionary<string, int> ProductList { get; set; }
     }
 
     public class TenPayV3_Odrer : Base_TenPayV3VD

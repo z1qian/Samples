@@ -6,11 +6,12 @@
 }
 
 <h2>产品列表</h2>
+<h4>@(Model.Msg ?? "暂无")</h4>
 <ul>
     @foreach (var item in Model.ProductList)
     {
         <li>
-            @item
+            @Html.ActionLink($"{item.Key}，价格：{item.Value}", "Order", new { name = item })
         </li>
     }
 </ul>
