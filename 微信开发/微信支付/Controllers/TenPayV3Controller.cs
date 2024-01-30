@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Senparc.Weixin;
+using Senparc.Weixin.Exceptions;
 using Senparc.Weixin.Helpers;
 using Senparc.Weixin.MP.Helpers;
 using Senparc.Weixin.TenPay;
@@ -58,7 +59,7 @@ namespace 微信支付.Controllers
         public IActionResult Order(string name)
         {
             string body = name;
-            int price = 1;//单位：分
+            int price = productDic[name];//单位：分
             string openId = "";
 
             string orderNo = $"{TenPayV3Info.MchId}{DateTime.Now:yyyyMMddHHmmss}{TenPayV3Util.BuildRandomStr(6)}";
@@ -89,6 +90,53 @@ namespace 微信支付.Controllers
             HttpContext.Session.SetString("BillFee", price.ToString());
 
             return View(vd);
+        }
+
+        /// <summary>
+        /// 支付回调URL，对应于TenPayV3Info.TenPayV3Notify
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult PayNotifyUrl()
+        {
+            try
+            {
+                ResponseHandler resHandler = new ResponseHandler(null);
+
+                string returnCode = resHandler.GetParameter("return_code");
+                string returnMsg = resHandler.GetParameter("return_msg");
+
+                resHandler.SetKey(TenPayV3Info.Key);
+
+                if (resHandler.IsTenpaySign() && returnCode.ToUpper() == "SUCCESS")
+                {
+                    //正确的订单处理
+                    //直到这里，才能认为交易真正成功了，可以进行数据库操作，但是别忘了返回规定格式的消息！
+
+                    /* 这里可以进行订单处理的逻辑 */
+
+                    string appId = TenPayV3Info.AppId;//与微信公众账号后台的AppId设置保持一致，区分大小写。
+                    string openId = resHandler.GetParameter("openid");
+
+                    WeixinTrace.SendCustomLog("支付成功模板消息参数", appId + " , " + openId);
+                }
+                else
+                {
+                    //错误的订单处理
+                }
+
+                //返回给微信的请求
+                RequestHandler res = new RequestHandler(null);
+                //创建应答信息返回给微信
+                res.SetParameter("return_code", returnCode);
+                res.SetParameter("return_msg", returnMsg);
+
+                return Content(res.ParseXML(), "text/xml");
+            }
+            catch (Exception ex)
+            {
+                new WeixinException(ex.Message, ex);
+                throw;
+            }
         }
     }
 }
