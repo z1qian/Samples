@@ -11,7 +11,7 @@
     @foreach (var item in Model.ProductList)
     {
         <li>
-            @Html.ActionLink($"{item.Key}，价格：{item.Value}", "Order", new { name = item })
+            @Html.ActionLink($"{item.Key}，价格：{item.Value}", "Order", new { name = item.Key })
         </li>
     }
 </ul>
