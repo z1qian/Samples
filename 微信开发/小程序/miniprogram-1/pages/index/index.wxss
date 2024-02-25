@@ -4,6 +4,7 @@ page {
   display: flex;
   flex-direction: column;
 }
+
 .scrollarea {
   flex: 1;
   overflow-y: hidden;
@@ -59,4 +60,9 @@ page {
 
 .nickname-input {
   flex: 1;
+}
+
+.service-btn {
+  background-color: #ff8f00;
+  box-shadow: 1rpx 1rpx 8rpx 0rpx rgba(22, 22, 22, 0.35);
 }

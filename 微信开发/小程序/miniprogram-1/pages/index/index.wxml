@@ -26,6 +26,19 @@
         获取数据
       </button>
     </view>
+    <view class="btn-contact">
+      <!-- 客服对话 -->
+      <button 
+        session-from="Senparc.Weixin" 
+        open-type="contact" 
+        class=".service-btn"
+        send-message-title="这是标题"
+        send-message-img="../../images/1708782390137.jpg"
+        show-message-card="true"
+        >
+        进入客服
+      </button>
+    </view>
     <view class="usermotto">
       <text class="user-motto">{{motto}}</text>
     </view>

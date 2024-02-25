@@ -6,11 +6,12 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    const isDebug = true;//调试状态使用本地服务器，非调试状态使用远程服务器
+    //调试状态使用本地服务器，非调试状态使用远程服务器
+    const isDebug = false;
     if (!isDebug) {
       //远程域名
-      wx.setStorageSync('domainName', "http://szrdtest.frp.senparc.com")
-      wx.setStorageSync('wssDomainName', "wss://szrdtest.frp.senparc.com")
+      wx.setStorageSync('domainName', "http://coren.frp.senparc.com")
+      wx.setStorageSync('wssDomainName', "wss://coren.frp.senparc.com")
     }
     else {
       //本地测试域名
@@ -22,6 +23,25 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        const domainName = wx.getStorageSync('domainName');
+        wx.request({
+          url: `${domainName}/WxOpen/OnLogin`,
+          method: "POST",
+          // POST 请求传递一个参数，必须设置以下 header，不然后台接收不到 code
+          header: { 'content-type': 'application/x-www-form-urlencoded' },
+          data: {
+            code: res.code
+          },
+          success: function (res) {
+            const { msg,openId,sessionKey,sessionId } = res.data
+            wx.showModal({
+              title: msg,
+              content: `openId:${openId}\r\sessionKey:${sessionKey}`,
+            })
+            console.log('wx.login - request-/WxOpen/OnLogin Result:', res);
+            wx.setStorageSync('sessionId', sessionId);
+          }
+        })
       }
     })
   },
