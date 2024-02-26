@@ -98,12 +98,12 @@ public partial class CustomWxOpenMessageHandler : WxOpenMessageHandler<CustomWxO
         else if (contentUpper == "CARD")
         {
             //上传封面临时素材
-            var uploadResult = await Senparc.Weixin.MP.AdvancedAPIs.MediaApi.UploadTemporaryMediaAsync(appId, UploadMediaFileType.image, ServerUtility.ContentRootMapPath("~/Images/1708782390137.jpg"));
+            //var uploadResult = await Senparc.Weixin.MP.AdvancedAPIs.MediaApi.UploadTemporaryMediaAsync(appId, UploadMediaFileType.image, ServerUtility.ContentRootMapPath("~/Images/1708782390137.jpg"));
 
             //发送客服消息
             //await Senparc.Weixin.WxOpen.AdvancedAPIs.CustomApi.SendMiniProgramPageAsync(appId, OpenId, "欢迎使用 Senparc.Weixin SDK", "pages/websocket/websocket",
             //    uploadResult.media_id);
-            await Senparc.Weixin.WxOpen.AdvancedAPIs.CustomApi.SendImageAsync(appId, OpenId, uploadResult.media_id);
+            await Senparc.Weixin.WxOpen.AdvancedAPIs.CustomApi.SendTextAsync(appId, OpenId, $"您发送了【{contentUpper}】");
         }
         else if (contentUpper == "客服")
         {
