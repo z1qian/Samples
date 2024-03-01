@@ -1,6 +1,7 @@
 <!--index.wxml-->
 <scroll-view class="scrollarea" scroll-y type="list">
   <view class="container">
+    <!-- 获取用户信息 -->
     <view class="userinfo">
       <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
         <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
@@ -20,25 +21,26 @@
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       </block>
     </view>
-    <view>
-      <!-- 请求数据 -->
+    <!-- 请求数据 -->
+    <view class="btn-contact">
       <button type="primary" bindtap="doRequest" hover-class="other-button-hover" class="btn-DoRequest">
         获取数据
       </button>
     </view>
+    <!-- 客服对话 -->
     <view class="btn-contact">
-      <!-- 客服对话 -->
-      <button 
-        session-from="Senparc.Weixin" 
-        open-type="contact" 
-        class=".service-btn"
-        send-message-title="这是标题"
-        send-message-img="../../images/1708782390137.jpg"
-        show-message-card="true"
-        >
+
+      <button session-from="Senparc.Weixin" open-type="contact" class=".service-btn" send-message-title="这是标题" send-message-img="../../images/1708782390137.jpg" show-message-card="true">
         进入客服
       </button>
     </view>
+    <!-- 订阅消息 -->
+    <view class="btn-contact">
+      <button bindtap="sendMessageTemplate">
+        订阅消息
+      </button>
+    </view>
+    <!-- 口号 -->
     <view class="usermotto">
       <text class="user-motto">{{motto}}</text>
     </view>

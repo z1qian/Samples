@@ -66,3 +66,7 @@ page {
   background-color: #ff8f00;
   box-shadow: 1rpx 1rpx 8rpx 0rpx rgba(22, 22, 22, 0.35);
 }
+
+.btn-contact{
+  margin: 5px;
+}

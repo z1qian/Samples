@@ -34,10 +34,10 @@ App({
           },
           success: function (res) {
             const { msg,openId,sessionKey,sessionId } = res.data
-            wx.showModal({
-              title: msg,
-              content: `openId:${openId}\r\sessionKey:${sessionKey}`,
-            })
+            // wx.showModal({
+            //   title: msg,
+            //   content: `openId:${openId}\r\sessionKey:${sessionKey}`,
+            // })
             console.log('wx.login - request-/WxOpen/OnLogin Result:', res);
             wx.setStorageSync('sessionId', sessionId);
           }

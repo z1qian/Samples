@@ -2,8 +2,7 @@
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 
 Page({
-  onLoad(){
-    console.log();
+  onLoad() {
   },
   data: {
     motto: 'Hello World',
@@ -76,6 +75,51 @@ Page({
             }
           }
         })
+      }
+    })
+  },
+  //发送订阅消息
+  sendMessageTemplate: function () {
+    const templateId = '44V9uWx-cT4C8780LxIl0xWs9VUrzrPzq9S7zB2xgqw';
+    wx.requestSubscribeMessage({
+      tmplIds: [templateId],
+      success(res) {
+        console.log('sendMessageTemplate - success：', res);
+        var acceptResult = res[templateId];//'accept'、'reject'、'ban'
+        wx.showModal({
+          title: '您点击了按钮',
+          content: '事件类型：' + acceptResult + '\r\n' + '您将在几秒钟之后收到延迟的提示',
+          showCancel: false,
+          complete: (res) => {
+            if (res.confirm) {
+              if (acceptResult != 'accept') {
+                console.log(acceptResult);
+                return;
+              }
+              // accept
+              wx.request({
+                url: `${wx.getStorageSync('domainName')}/WxOpen/SubscribeMessage`,
+                method: 'POST',
+                header: { 'content-type': 'application/x-www-form-urlencoded' },
+                data: {
+                  sessionId: wx.getStorageSync('sessionId'),
+                  templateId: templateId
+                },
+                success(msgRes) {
+                  const { success, msg } = msgRes.data
+                  const title = success ? '操作成功！' : '操作失败！';
+                  wx.showModal({
+                    title: title,
+                    content: msg,
+                  });
+                }
+              })
+            }
+          }
+        })
+      },
+      fail(res) {
+        console.log('sendMessageTemplate - fail：', res);
       }
     })
   }
