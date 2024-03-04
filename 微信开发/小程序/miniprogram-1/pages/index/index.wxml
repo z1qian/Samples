@@ -40,6 +40,12 @@
         订阅消息
       </button>
     </view>
+     <!-- 微信支付 -->
+     <view class="btn-contact">
+      <button bindtap="wxPay" type="warn">
+        微信支付
+      </button>
+    </view>
     <!-- 口号 -->
     <view class="usermotto">
       <text class="user-motto">{{motto}}</text>

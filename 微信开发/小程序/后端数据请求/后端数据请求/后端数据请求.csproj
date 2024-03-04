@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Senparc.Weixin" Version="6.17.1" />
     <PackageReference Include="Senparc.Weixin.AspNet" Version="1.1.1" />
+    <PackageReference Include="Senparc.Weixin.TenPayV3" Version="1.2.1.1" />
     <!--<PackageReference Include="Senparc.Weixin.MP" Version="16.20.5" />-->
     <PackageReference Include="Senparc.Weixin.WxOpen" Version="3.17.6" />
   </ItemGroup>

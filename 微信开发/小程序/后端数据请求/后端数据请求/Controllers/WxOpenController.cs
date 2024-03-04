@@ -6,6 +6,10 @@ using Senparc.Weixin;
 using Senparc.Weixin.AspNet.MvcExtension;
 using Senparc.Weixin.Entities.TemplateMessage;
 using Senparc.Weixin.MP;
+using Senparc.Weixin.TenPayV3;
+using Senparc.Weixin.TenPayV3.Apis;
+using Senparc.Weixin.TenPayV3.Apis.BasePay;
+using Senparc.Weixin.TenPayV3.Helpers;
 using Senparc.Weixin.WxOpen.AdvancedAPIs.Sns;
 using Senparc.Weixin.WxOpen.Containers;
 using Senparc.Weixin.WxOpen.Entities;
@@ -278,6 +282,78 @@ public class WxOpenController : BaseController
             {
                 success = false,
                 msg = result.errmsg
+            });
+        }
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> GetPrepayid(string sessionId)
+    {
+        try
+        {
+            var sessionBag = SessionContainer.GetSession(sessionId);
+            if (sessionBag == null)
+            {
+                return Json(new
+                {
+                    success = false,
+                    msg = "请先登录！"
+                });
+            }
+
+            var openId = sessionBag.OpenId;
+
+            //生成订单10位序列号，此处用时间和随机数生成，商户根据自己调整，保证唯一
+            string sp_billno = $"{Config.SenparcWeixinSetting.TenPayV3_MchId}{DateTime.Now:yyyyMMddHHmmss}{TenPayV3Util.BuildRandomStr(6)}";
+
+            var body = "小程序微信支付Demo";
+            int price = 1;//单位：分
+            string notifyUrl = Config.SenparcWeixinSetting.TenPayV3_WxOpenTenpayNotify;
+            var basePayApis = new BasePayApis(Config.SenparcWeixinSetting);
+
+            var requestData = new TransactionsRequestData(WxOpenAppId,
+                Config.SenparcWeixinSetting.TenPayV3_MchId,
+                body,
+                sp_billno,
+                new Senparc.Weixin.TenPayV3.Entities.TenpayDateTime(DateTime.Now.AddMinutes(120), false),
+                HttpContext.UserHostAddress().ToString(),
+                notifyUrl,
+                null,
+                new TransactionsRequestData.Amount() { currency = "CNY", total = price },
+                new TransactionsRequestData.Payer(openId));
+
+            var result = await basePayApis.JsApiAsync(requestData);
+            var returnCode = result.ResultCode;
+            if (!returnCode.Success)
+            {
+                return Json(new
+                {
+                    success = false,
+                    msg = returnCode.ErrorMessage
+                });
+            }
+            string packageStr = "prepay_id=" + result.prepay_id;
+
+            var jsApiUiPackage = TenPaySignHelper.GetJsApiUiPackage(WxOpenAppId, result.prepay_id);
+
+            return Json(new
+            {
+                success = true,
+                prepay_id = result.prepay_id,
+                appId = WxOpenAppId,
+                timeStamp = jsApiUiPackage.Timestamp,
+                nonceStr = jsApiUiPackage.NonceStr,
+                packageStr = packageStr,
+                signType = "RSA",
+                paySign = jsApiUiPackage.Signature
+            });
+        }
+        catch (Exception ex)
+        {
+            return Json(new
+            {
+                success = false,
+                msg = ex.Message
             });
         }
     }
