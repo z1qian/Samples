@@ -11,7 +11,7 @@ App({
     if (!isDebug) {
       //远程域名
       wx.setStorageSync('domainName', "http://coren.frp.senparc.com")
-      wx.setStorageSync('wssDomainName', "wss://coren.frp.senparc.com")
+      wx.setStorageSync('wssDomainName', "ws://coren.frp.senparc.com")
     }
     else {
       //本地测试域名

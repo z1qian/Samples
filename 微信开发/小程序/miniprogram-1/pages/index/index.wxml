@@ -46,6 +46,12 @@
         微信支付
       </button>
     </view>
+     <!-- WebSocket -->
+     <view class="btn-contact">
+      <button bindtap="bindWebsocketTap" type="default">
+        WebSocket
+      </button>
+    </view>
     <!-- 口号 -->
     <view class="usermotto">
       <text class="user-motto">{{motto}}</text>

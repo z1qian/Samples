@@ -185,5 +185,11 @@ Page({
         }
       }
     })
+  },
+  //WebSocket
+  bindWebsocketTap:function(){
+    wx.navigateTo({
+      url: '../websocket_signalr/websocket_signalr'
+    })
   }
 })
