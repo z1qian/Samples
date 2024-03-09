@@ -50,7 +50,7 @@ public class CustomNetCoreWebSocketMessageHandler : WebSocketMessageHandler
             var sessionBag = SessionContainer.GetSession(receivedMessage.SessionId ?? "-");
 
             //临时演示使用固定openId
-            var openId = sessionBag != null ? sessionBag.OpenId : receivedMessage.SessionId;// "用户未正确登陆小程序，或是在网页上发起";
+            var openId = sessionBag != null ? sessionBag.OpenId : receivedMessage.SessionId;//用户未正确登陆小程序，或是在网页上发起
             openId ??= "[未登录用户]";
 
             //await webSocketHandler.SendMessage("OpenId：" + openId, webSocketHandler.WebSocket.Clients.Caller);

@@ -7,16 +7,16 @@ App({
     wx.setStorageSync('logs', logs)
 
     //调试状态使用本地服务器，非调试状态使用远程服务器
-    const isDebug = false;
+    const isDebug = true;
     if (!isDebug) {
       //远程域名
-      wx.setStorageSync('domainName', "http://coren.frp.senparc.com")
-      wx.setStorageSync('wssDomainName', "ws://coren.frp.senparc.com")
+      wx.setStorageSync('domainName', "http://34f4x52061.imdo.co:5001")
+      wx.setStorageSync('wssDomainName', "ws://34f4x52061.imdo.co:5001")
     }
     else {
       //本地测试域名
       wx.setStorageSync('domainName', "https://127.0.0.1:44322")
-      wx.setStorageSync('wssDomainName', "ws://127.0.0.1:44322")
+      wx.setStorageSync('wssDomainName', "wss://127.0.0.1:44322")
     }
 
     // 登录

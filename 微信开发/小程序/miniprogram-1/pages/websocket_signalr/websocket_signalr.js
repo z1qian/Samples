@@ -3,7 +3,6 @@ const signalR = require("../../utils/signalr.1.0.js");
 const senparcWebsocket = require("../../utils/senparc.websocket.2.0.js");
 
 var connection = null;// Signalr 连接
-const app = getApp()
 var socketOpen = false;//WebSocket 打开状态
 Page({
 
@@ -34,17 +33,17 @@ Page({
     connection = senparcWebsocket.buildConnectionAndStart(hubUrl, signalR, onStart);
     //定义收到消息后触发的事件
     const onReceive = function (res) {
-      console.log('收到服务器内容：' + res);
+      console.log('收到服务器内容：', res);
       const jsonResult = JSON.parse(res);
       const currentIndex = that.data.messageTextArr.length + 1;
       const newArr = that.data.messageTextArr;
-      newArr.unshift({
+      newArr.push({
         index: currentIndex,
         content: jsonResult.content,
         time: jsonResult.time
       });
 
-      console.log(that.data);
+      console.log(that.data.messageTextArr);
       that.setData({
         messageTextArr: newArr
       });
