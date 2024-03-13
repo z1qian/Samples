@@ -1,5 +1,8 @@
 <template>
 	<view class="out">
+		<image src="../../static/images/circle.jpg" mode="scaleToFill" class="myimg"></image>
+		<image src="../../static/images/shuijiao.jpg" mode="heightFix" class=""></image>
+
 		<view class="box"></view>
 		<view class="block"></view>
 		<icon type="waiting" size="26" />
@@ -32,16 +35,16 @@
 				</view>
 			</view>
 		</scroll-view>
-		
-		<swiper class="swiper" >
-			<swiper-item  class="item">
-				<image src="../../static/images/pic1.jpg"></image>
+
+		<swiper class="swiper" indicator-dots autoplay interval=3000 duration=300 circular>
+			<swiper-item class="item">
+				<image src="../../static/images/pic1.webp" mode="scaleToFill"></image>
 			</swiper-item>
-			<swiper-item  class="item">
-				<image src="../../static/images/pic2.jpg"></image>
+			<swiper-item class="item">
+				<image src="../../static/images/pic2.webp" mode="scaleToFill"></image>
 			</swiper-item>
-			<swiper-item  class="item">
-				<image src="../../static/images/pic3.png"></image>
+			<swiper-item class="item">
+				<image src="../../static/images/pic3.webp" mode="scaleToFill"></image>
 			</swiper-item>
 		</swiper>
 	</view>
@@ -88,5 +91,25 @@
 				margin-right: 10rpx;
 			}
 		}
+	}
+
+	.swiper {
+		height: 400rpx;
+		margin-top: 100rpx;
+		
+		.item{
+			padding: 20rpx;
+			box-sizing: border-box;
+			image{
+				width: 100%;
+				height: 350rpx;
+			}
+		}
+	}
+
+	.myimg {
+		width: 200rpx;
+		height: 200rpx;
+		background-color: red;
 	}
 </style>
