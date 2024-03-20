@@ -6,6 +6,9 @@
 		</h1>
 		<view>从基础到进阶</view>
 		<h2>标题二加粗<i>标签</i></h2>
+		<view>
+			<navigator url="/pages/medium/medium">跳转至medium页</navigator>
+		</view>
 	</div>
 </template>
 

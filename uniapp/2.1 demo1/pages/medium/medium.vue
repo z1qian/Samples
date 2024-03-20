@@ -21,6 +21,14 @@
 		<view>
 			<input type="text" value="123" maxlength="10"/>
 		</view>
+		<view>
+			<navigator url="/pages/index/index" hover-start-time="50" hover-stay-time="5000">跳转至index页</navigator>
+		</view>
+		<view>
+			<navigator url="/pages/index2/index2">
+				<image src="../../static/logo.png" mode=""></image>
+			</navigator>
+		</view>
 	</view>
 </template>
 
