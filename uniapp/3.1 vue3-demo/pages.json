@@ -13,6 +13,78 @@
 				"navigationBarTitleText" : "ref函数",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/v-bind/v-bind",
+			"style" : 
+			{
+				"navigationBarTitleText" : "v-bind配合图片轮播案例",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/event-listener/event-listener",
+			"style" : 
+			{
+				"navigationBarTitleText" : "事件监听",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/v-if/v-if",
+			"style" : 
+			{
+				"navigationBarTitleText" : "v-if",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/v-for/v-for",
+			"style" : 
+			{
+				"navigationBarTitleText" : "v-for",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/sample-shoppingcar/sample-shoppingcar",
+			"style" : 
+			{
+				"navigationBarTitleText" : "购物车案例",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/sample-chicken/sample-chicken",
+			"style" : 
+			{
+				"navigationBarTitleText" : "趣味鸡案例",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/sample-hotmsg/sample-hotmsg",
+			"style" : 
+			{
+				"navigationBarTitleText" : "热梗指南",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/computed/computed",
+			"style" : 
+			{
+				"navigationBarTitleText" : "计算属性",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/watch/watch",
+			"style" : 
+			{
+				"navigationBarTitleText" : "watch-监听器",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {

@@ -1,0 +1,134 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		},
+		{
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": "用户界面",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/1-showToast/1-showToast",
+			"style": {
+				"navigationBarTitleText": "显示消息提示框",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/2-showLoading/2-showLoading",
+			"style": {
+				"navigationBarTitleText": "showLoading",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/3-showModal/3-showModal",
+			"style": {
+				"navigationBarTitleText": "showModal",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/4-showActionSheet/4-showActionSheet",
+			"style": {
+				"navigationBarTitleText": "showActionSheet",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/5-setNavigationBarTitle/5-setNavigationBarTitle",
+			"style": {
+				"navigationBarTitleText": "setNavigationBarTitle",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/6-setNavigationBarColor/6-setNavigationBarColor",
+			"style": {
+				"navigationBarTitleText": "setNavigationBarColor",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/7-showNavigationBarLoading/7-showNavigationBarLoading",
+			"style": {
+				"navigationBarTitleText": "showNavigationBarLoading",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/8-hideHomeButton/8-hideHomeButton",
+			"style": {
+				"navigationBarTitleText": "hideHomeButton",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/9-setTabBar/9-setTabBar",
+			"style": {
+				"navigationBarTitleText": "设置TabBar",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/10-onPullDownRefresh/10-onPullDownRefresh",
+			"style": {
+				"navigationBarTitleText": "onPullDownRefresh",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path" : "pages/11-router/11-router",
+			"style" : 
+			{
+				"navigationBarTitleText" : "路由",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/12-storage/12-storage",
+			"style" : 
+			{
+				"navigationBarTitleText" : "storage",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/13-request/13-request",
+			"style" : 
+			{
+				"navigationBarTitleText" : "request",
+				"enablePullDownRefresh" : false
+			}
+		}
+
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"list": [{
+				"text": "首页",
+				"pagePath": "pages/index/index"
+			},
+			{
+				"text": "用户",
+				"pagePath": "pages/user/user"
+			},
+			{
+				"text": "设置TabBar",
+				"pagePath": "pages/9-setTabBar/9-setTabBar"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}

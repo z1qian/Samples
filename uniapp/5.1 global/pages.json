@@ -1,0 +1,65 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/3-pages/3-pages",
+			"style": {
+				"navigationBarTitleText": "pages.json",
+				"enablePullDownRefresh": true,
+				"navigationBarBackgroundColor": "#f8f8f8",
+				"navigationBarTextStyle": "black",
+				// "navigationStyle": "custom",
+				"backgroundColor": "#000000"
+			}
+		},
+		{
+			"path": "pages/1-rpx/1-rpx",
+			"style": {
+				"navigationBarTitleText": "rpx",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#800080",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/2-globalStyle/2-globalStyle",
+			"style": {
+				"navigationBarTitleText": "pages.json-globalStyle",
+				"enablePullDownRefresh": true
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#345aaa",
+		"backgroundColor": "#345aaa",
+		// "navigationStyle": "custom",
+		"backgroundTextStyle": "dark",
+		"onReachBottomDistance": 350
+	},
+	"tabBar": {
+		"color": "#FF0000",
+		"selectedColor": "#800080",
+		// "backgroundColor": "#0000FF",
+		"borderStyle": "black",
+		// "position": "top",
+		// "fontSize": "20px",
+		"list": [{
+			"text": "rpx",
+			"pagePath": "pages/1-rpx/1-rpx",
+			"iconPath": "static/images/home.png",
+			"selectedIconPath": "static/images/home-h.png"
+		}, {
+			"text": "pages",
+			"pagePath": "pages/3-pages/3-pages",
+			"iconPath": "static/images/user.png",
+			"selectedIconPath": "static/images/user-h.png"
+		}, {
+			"text": "globalStyle",
+			"pagePath": "pages/2-globalStyle/2-globalStyle",
+			"iconPath": "static/images/custom.png",
+			"selectedIconPath": "static/images/custom-h.png"
+		}]
+	},
+	"uniIdRouter": {}
+}
