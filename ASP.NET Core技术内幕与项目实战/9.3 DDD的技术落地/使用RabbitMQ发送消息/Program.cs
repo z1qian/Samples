@@ -13,6 +13,7 @@ string exchangeName = "myExchange";                  //交换机的名字
 string eventName = "myEvent";                       //routingKey的值
 
 //创建了一个客户端到RabbitMQ的TCP连接
+//这个TCP连接我们尽量重复使用
 using var conn = factory.CreateConnection();
 while (true)
 {
@@ -25,6 +26,7 @@ while (true)
         properties.DeliveryMode = 2;
 
         /*
+         * 使用ExchangeDeclare方法声明了一个指定名字的交换机，如果指定名字的交换机已经存在，则不再重复创建
          * direct表示这个交换机会根据消息routingkey的值进行相等性匹配，消息会发布到和它的routingkey绑定的队列中去
          */
         channel.ExchangeDeclare(exchange: exchangeName, type: "direct");//声明交换机（用于把消息路由到一个或者多个队列中）
