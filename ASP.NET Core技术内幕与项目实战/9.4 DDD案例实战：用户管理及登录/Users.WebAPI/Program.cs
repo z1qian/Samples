@@ -29,6 +29,7 @@ builder.Services.Configure<MvcOptions>(opt =>
 {
     opt.Filters.Add<UnitOfWorkFilter>();
 });
+//注册各层所需要的服务
 builder.Services.AddScoped<UserDomainService>();
 builder.Services.AddScoped<ISmsCodeSender, MockSmsCodeSender>();
 builder.Services.AddScoped<IUserDomainRepository, UserDomainRepository>();

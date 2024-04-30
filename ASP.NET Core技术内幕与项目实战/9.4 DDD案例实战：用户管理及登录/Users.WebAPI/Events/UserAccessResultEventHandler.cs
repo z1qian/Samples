@@ -4,7 +4,7 @@ using Users.Domain.Events;
 
 namespace Users.WebAPI.Events;
 
-public class UserAccessResultEventHandler: INotificationHandler<UserAccessResultEvent>
+public class UserAccessResultEventHandler : INotificationHandler<UserAccessResultEvent>
 {
     private readonly IUserDomainRepository repository;
 
@@ -15,11 +15,11 @@ public class UserAccessResultEventHandler: INotificationHandler<UserAccessResult
 
     public Task Handle(UserAccessResultEvent notification, CancellationToken cancellationToken)
     {
-        var result = notification.Result;
-        var phoneNum = notification.PhoneNumber;
+        var (phoneNum,result) = notification;
+
 
         string msg;
-        switch(result)
+        switch (result)
         {
             case Domain.UserAccessResult.OK:
                 msg = $"{phoneNum}登陆成功";
@@ -39,6 +39,6 @@ public class UserAccessResultEventHandler: INotificationHandler<UserAccessResult
             default:
                 throw new NotImplementedException();
         }
-        return repository.AddNewLoginHistoryAsync(phoneNum,msg);
+        return repository.AddNewLoginHistoryAsync(phoneNum, msg);
     }
 }
