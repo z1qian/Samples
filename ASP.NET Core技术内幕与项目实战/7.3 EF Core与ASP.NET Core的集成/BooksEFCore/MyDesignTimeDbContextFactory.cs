@@ -18,7 +18,7 @@ internal class MyDesignTimeDbContextFactory : IDesignTimeDbContextFactory<MyDbCo
         //#endif
         DbContextOptionsBuilder<MyDbContext> builder = new();
 
-        string connStr = Environment.GetEnvironmentVariable("ConnectionStrings:BooksEFCore", EnvironmentVariableTarget.Machine)
+        string connStr = Environment.GetEnvironmentVariable("ConnectionStrings:BooksEFCore")
             ?? "没有获取到连接字符串！";
         Console.WriteLine(connStr);
 
