@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IdentityService.Infrastructure.Migrations
 {
     [DbContext(typeof(IdDbContext))]
-    [Migration("20230801043101_IdentityServiceInit0801")]
-    partial class IdentityServiceInit0801
+    [Migration("20240502034214_IdentityServiceInit240502")]
+    partial class IdentityServiceInit240502
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.9")
+                .HasAnnotation("ProductVersion", "7.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Listening.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class ListeningInit0802 : Migration
+    public partial class ListeningInit240502 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

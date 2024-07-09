@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace IdentityService.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class IdentityServiceInit0801 : Migration
+    public partial class IdentityServiceInit240502 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

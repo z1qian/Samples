@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Listening.Infrastructure.Migrations
 {
     [DbContext(typeof(ListeningDbContext))]
-    [Migration("20230802104501_ListeningInit0802")]
-    partial class ListeningInit0802
+    [Migration("20240502034515_ListeningInit240502")]
+    partial class ListeningInit240502
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.9")
+                .HasAnnotation("ProductVersion", "7.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

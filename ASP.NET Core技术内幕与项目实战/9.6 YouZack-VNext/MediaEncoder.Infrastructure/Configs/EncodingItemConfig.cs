@@ -17,6 +17,9 @@ class EncodingItemConfig : IEntityTypeConfiguration<EncodingItem>
         builder.Property(e => e.Status).HasConversion<string>().HasMaxLength(10);
 
         builder.HasIndex(e => new { e.FileSHA256Hash, e.FileSizeInBytes, e.Status });
+        //如果你经常需要根据Status字段来查询数据，
+        //并且这些查询不包括FileSHA256Hash和FileSizeInBytes字段，
+        //那么一个单独的Status索引可能会提高这些查询的性能
         builder.HasIndex(e => e.Status);
     }
 }

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MediaEncoder.Infrastructure.Migrations
 {
     [DbContext(typeof(MEDbContext))]
-    partial class MEDbContextModelSnapshot : ModelSnapshot
+    partial class MEDbContextModelSnapshot : ModelSnapshot 
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

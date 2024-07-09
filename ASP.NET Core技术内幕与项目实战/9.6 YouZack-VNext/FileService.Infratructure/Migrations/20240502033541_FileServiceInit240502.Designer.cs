@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FileService.Infratructure.Migrations
 {
     [DbContext(typeof(FSDBContext))]
-    [Migration("20230801042829_FileServiceInit0801")]
-    partial class FileServiceInit0801
+    [Migration("20240502033541_FileServiceInit240502")]
+    partial class FileServiceInit240502
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.9")
+                .HasAnnotation("ProductVersion", "7.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

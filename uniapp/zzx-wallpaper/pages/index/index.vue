@@ -151,9 +151,11 @@ getClassifyList();
 	.banner {
 		width: 750rpx;
 		padding: 30rpx 0;
+		
 		swiper {
 			width: 100%;
 			height: 340rpx;
+			
 			&-item {
 				width: 100%;
 				height: 100%;

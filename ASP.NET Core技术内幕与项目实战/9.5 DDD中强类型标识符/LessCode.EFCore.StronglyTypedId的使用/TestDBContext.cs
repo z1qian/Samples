@@ -8,7 +8,7 @@ internal class TestDBContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=.\\SQLExpress;DataBase=DemoDB;Trusted_Connection=True;trustServerCertificate=true;");
+        optionsBuilder.UseSqlServer("Server=.;DataBase=DemoDB;Trusted_Connection=True;trustServerCertificate=true;");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

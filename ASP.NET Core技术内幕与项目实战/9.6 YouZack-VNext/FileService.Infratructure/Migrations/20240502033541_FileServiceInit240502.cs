@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FileService.Infratructure.Migrations
 {
     /// <inheritdoc />
-    public partial class FileServiceInit0801 : Migration
+    public partial class FileServiceInit240502 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

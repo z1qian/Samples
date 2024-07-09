@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MediaEncoder.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class MediaEncoderInit0811 : Migration
+    public partial class MediaEncoderInit240502 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

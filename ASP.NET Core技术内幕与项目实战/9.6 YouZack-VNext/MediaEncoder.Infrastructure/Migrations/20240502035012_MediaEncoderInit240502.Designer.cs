@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MediaEncoder.Infrastructure.Migrations
 {
     [DbContext(typeof(MEDbContext))]
-    [Migration("20230811092737_MediaEncoderInit0811")]
-    partial class MediaEncoderInit0811
+    [Migration("20240502035012_MediaEncoderInit240502")]
+    partial class MediaEncoderInit240502
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

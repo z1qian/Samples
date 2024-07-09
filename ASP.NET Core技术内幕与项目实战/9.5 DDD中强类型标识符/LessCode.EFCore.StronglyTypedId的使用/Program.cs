@@ -11,13 +11,13 @@ Person p1 = new Person()
 ctx.Persons.Add(p1);
 ctx.SaveChanges();
 
-PersonId id = p1.Id;
-Console.WriteLine(id);
+//PersonId id = p1.Id;
+//Console.WriteLine(id);
 
-Person p = FindById(new PersonId(1))!;
-Console.WriteLine(p.Name);
+//Person p = FindById(id)!;
+//Console.WriteLine(p.Name);
 
-Person? FindById(PersonId pid)
-{
-    return ctx.Persons.SingleOrDefault(p => p.Id == pid);
-}
+//Person? FindById(PersonId pid)
+//{
+//    return ctx.Persons.SingleOrDefault(p => p.Id == pid);
+//}
